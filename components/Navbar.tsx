@@ -15,7 +15,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <div className='flex flex-row '>
                         {/* <Image className='bg0w' src={barterBuddyLogo} alt="Barter Buddy Logo" width={50} height={50} /> */}
-                        <div className='font-single text-white text-4xl'>Barter Buddy</div>
+                        <div className='font-single text-white text-4xl tracking-widest'>Barter Buddy</div>
                     </div>
                     <div className="flex space-x-4">
                         {session &&
