@@ -6,10 +6,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import { SupabaseAdapter } from "@auth/supabase-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Adapter } from "next-auth/adapters";
+import prisma from "./prisma";
 
 
 export const authConfig: NextAuthOptions = {
+    // adapter: PrismaAdapter(prisma) as Adapter,
     providers: [
         CredentialsProvider({
             name: "Sign in",
