@@ -13,11 +13,16 @@
     "@auth/supabase-adapter": "^0.1.13",
     "@prisma/client": "^5.7.1",
     "@supabase/supabase-js": "^2.39.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.302.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "supabase": "^1.123.4"
+    "supabase": "^1.123.4",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
