@@ -33,8 +33,8 @@ export default async function SignInPage() {
         backgroundColor: "rgba(20, 25, 25, 0.6)",
       }}></div>
 
-      <div style={{ zIndex: '5' }}>
-        <h1 className="mt-10 mb-4 text-4xl font-bold">Trade Treasures, Make Connections</h1>
+      <div className="max-md:m-2 z-10">
+        <h1 className="max-md:text-center mt-10 mb-4 text-4xl font-bold">Trade Treasures, Make Connections</h1>
         <div className=" flex flex-col items-center mt-10 mb-10 p-10 shadow-md bg-white bg-opacity-70 text-black">
           <h1 className="mt-10 mb-4 text-4xl font-bold">Join Us</h1>
           <GoogleSignInButton />
