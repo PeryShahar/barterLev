@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import googleLogo from "@/public/google.png";
+import googleLogo from "@/public/google-logo.png";
 import facebookLogo from '@/public/facebook-logo.png'
 import { signIn } from "next-auth/react";
 
