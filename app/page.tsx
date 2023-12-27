@@ -13,8 +13,6 @@ import backgroundImage from '@/public/background-login.png'
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);
 
-  console.log("Session: ", session);
-
   if (session) return redirect("/timeline");
 
   return (

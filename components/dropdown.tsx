@@ -23,7 +23,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from './ui/button';
 
 const Dropdown = () => {
-    const { data: session, status } = useSession()
+    const { data: session } = useSession()
 
     return (
         <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5'>

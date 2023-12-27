@@ -10,9 +10,9 @@ const wait = (ms: number) => new Promise((rs) => setTimeout(rs, ms));
 export default async function Page() {
     await loginIsRequiredServer();
 
-    const session = await getServerSession(authConfig);
+    const session: any = await getServerSession(authConfig);
 
-    const users = await prisma.users.findMany({
+    const users = await prisma.user.findMany({
         where: {
             email: {
                 not: session?.user?.email
