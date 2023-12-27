@@ -12,6 +12,7 @@ export default async function Page() {
 
     const session = await getServerSession(authConfig);
 
+    //TODO: filter your own account
     const users = await prisma.users.findMany({
         select: { name: true, email: true, image: true }
     });
@@ -25,7 +26,6 @@ export default async function Page() {
                     <UserCard name={user.name} image={user.image} />
                 )
             })}
-
         </div>
     );
 }
