@@ -13,7 +13,7 @@ interface UserCardProps {
 
 const UserCard = ({ name, image }: UserCardProps) => {
     return (
-        <div className="p-4 shadow-xl flex gap-6 border-2 border-red-800 m-16 text-black rounded-2xl">
+        <div className="max-md:flex-col p-4 shadow-xl flex gap-6 border-2 border-red-800 m-16 text-black rounded-2xl">
             <Avatar className="ml-2 self-center size-20">
                 <AvatarImage src={image ?? ''} alt="User Avatar" />
                 <AvatarFallback>X</AvatarFallback>
