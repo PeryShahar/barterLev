@@ -1,7 +1,8 @@
 import "./globals.css";
 import { Inter, Single_Day } from "next/font/google";
 import { NextAuthProvider } from "./providers";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
+
 
 const inter = Inter({ subsets: ["latin"] });
 const singleDay = Single_Day({
