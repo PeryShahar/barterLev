@@ -12,8 +12,12 @@ export default async function Page() {
 
     const session = await getServerSession(authConfig);
 
-    //TODO: filter your own account
     const users = await prisma.users.findMany({
+        where: {
+            email: {
+                not: session?.user?.email
+            }
+        },
         select: { name: true, email: true, image: true }
     });
 
