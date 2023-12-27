@@ -51,17 +51,17 @@ const Navbar = () => {
                                 <Dialog>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
-                                            <Image className='border-2 rounded-full' src={session?.user?.image!} alt="User Avatar" width={50} height={50} />
+                                            <Image className='border-2 rounded-full cursor-pointer' src={session?.user?.image!} alt="User Avatar" width={50} height={50} />
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-32 font-single">
                                             <DropdownMenuLabel className='text-lg'>My Account</DropdownMenuLabel>
                                             <DropdownMenuSeparator />
                                             <DialogTrigger asChild>
-                                                <DropdownMenuItem className='text-base'>
+                                                <DropdownMenuItem className='text-base cursor-pointer'>
                                                     Edit Profile
                                                 </DropdownMenuItem>
                                             </DialogTrigger>
-                                            <DropdownMenuItem className='text-base' onClick={() => signOut()}>
+                                            <DropdownMenuItem className='text-base cursor-pointer' onClick={() => signOut()}>
                                                 Log out
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
