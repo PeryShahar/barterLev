@@ -128,6 +128,7 @@ const Dropdown = () => {
                                         </FormItem>
                                     )}
                                 />
+                                <p className="text-rose-500 text-xs">* your profile will only be displayed when there is information provided in the inputs.</p>
                                 <DialogClose asChild>
                                     <Button className="m-auto mt-4" type="submit">Save changes</Button>
                                 </DialogClose>

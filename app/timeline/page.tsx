@@ -15,7 +15,8 @@ export default async function Page() {
         where: {
             email: {
                 not: session?.user?.email
-            }
+            },
+            NOT: [{ give: null }, { give: "" }, { receive: null }, { receive: '' }],
         },
         select: { id: true, name: true, email: true, image: true, give: true, receive: true }
     });

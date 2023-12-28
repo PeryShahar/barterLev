@@ -5,8 +5,8 @@ import { revalidatePath } from "next/cache";
 
 export async function editProfile(userId:any, formData: FormData) {
     const schema = z.object({
-        give: z.string().min(1),
-        receive: z.string().min(1)
+        give: z.string(),
+        receive: z.string()
     })
     
     const parse = schema.safeParse({
