@@ -18,7 +18,7 @@ export default async function Page() {
                 not: session?.user?.email
             }
         },
-        select: { name: true, email: true, image: true }
+        select: { id: true, name: true, email: true, image: true }
     });
 
     await wait(1000);
@@ -27,7 +27,7 @@ export default async function Page() {
         <div className="border-3 border-black h-full">
             {users.map((user) => {
                 return (
-                    <UserCard name={user.name} image={user.image} />
+                    <UserCard key={user.id} name={user.name} image={user.image} />
                 )
             })}
         </div>
