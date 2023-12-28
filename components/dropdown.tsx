@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react"
 import { signOut, useSession } from "next-auth/react";
 
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -18,12 +20,44 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { editProfile } from "@/lib/actions"
+
+import {
+    Form,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+
 import { Button } from './ui/button';
+import { Input } from "./ui/input"
+
+const formSchema = z.object({
+    receive: z.string().max(200),
+    give: z.string().max(200),
+})
+
 
 const Dropdown = () => {
     const { data: session } = useSession()
+
+    const [receiveText, setReceiveText] = useState(session?.user?.receive)
+    const [giveText, setGiveText] = useState(session?.user?.give)
+
+    const editProfileWithUserEmail = editProfile.bind(null, session?.user?.id)
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            receive: "",
+            give: ""
+        },
+    })
 
     return (
         <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5'>
@@ -53,17 +87,53 @@ const Dropdown = () => {
                             Make changes to your profile here. Click save when you're done.
                         </DialogDescription>
                     </DialogHeader>
-                    <div className="grid w-full gap-1.5">
-                        <Label className='text-black text-lg' htmlFor="give">What do you want to give?</Label>
-                        <Textarea maxLength={200} className='text-black' placeholder="Type your message here." id="give" />
-                    </div>
-                    <div className="grid w-full gap-1.5">
-                        <Label className='text-black text-lg' htmlFor="receive">What do you want to receive?</Label>
-                        <Textarea maxLength={200} className='text-black' placeholder="Type your message here." id="receive" />
-                    </div>
-                    <DialogFooter>
-                        <Button type="submit">Save changes</Button>
-                    </DialogFooter>
+                    <Form {...form}>
+                        <form action={editProfileWithUserEmail} className="space-y-8">
+                            <div className="flex flex-col">
+                                <FormField
+                                    control={form.control}
+                                    name="give"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className='text-black text-lg'>What do you want to give?</FormLabel>
+                                            <Input
+                                                {...field}
+                                                id="give"
+                                                value={giveText}
+                                                onChange={(e) => setGiveText(e.target.value)}
+                                                className='text-black'
+                                                type="text"
+                                                placeholder="Type your message here."
+                                                maxLength={200} />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="receive"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className='text-black text-lg'>What do you want to receive?</FormLabel>
+                                            <Input
+                                                {...field}
+                                                id="receive"
+                                                value={receiveText}
+                                                onChange={(e) => setReceiveText(e.target.value)}
+                                                className='text-black'
+                                                type="text"
+                                                placeholder="Type your message here."
+                                                maxLength={200} />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <DialogClose asChild>
+                                    <Button className="m-auto mt-4" type="submit">Save changes</Button>
+                                </DialogClose>
+                            </div>
+                        </form>
+                    </Form>
                 </DialogContent>
             </Dialog>
         </div>

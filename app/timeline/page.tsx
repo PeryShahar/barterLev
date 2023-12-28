@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
 import UserCard from "@/components/userCard";
