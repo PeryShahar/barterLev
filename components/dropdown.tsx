@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { useState } from "react"
 import { signOut, useSession } from "next-auth/react";
+import { countries } from 'countries-list';
+console.log('countries: ', countries);
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { editProfile } from "@/lib/actions"
 
 import {
     DropdownMenu,
@@ -10,6 +16,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
 import {
     Dialog,
     DialogClose,
@@ -21,11 +28,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { editProfile } from "@/lib/actions"
-
 import {
     Form,
     FormField,
@@ -34,12 +36,23 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 import { Button } from './ui/button';
 import { Input } from "./ui/input"
 
 const formSchema = z.object({
     receive: z.string().max(200),
     give: z.string().max(200),
+    country: z.string()
 })
 
 
@@ -55,10 +68,11 @@ const Dropdown = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             receive: "",
-            give: ""
+            give: "",
+            country: ""
         },
     })
-
+    console.log(countries)
     return (
         <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5'>
 
@@ -89,7 +103,32 @@ const Dropdown = () => {
                     </DialogHeader>
                     <Form {...form}>
                         <form action={editProfileWithUserEmail} className="space-y-8">
-                            <div className="flex flex-col">
+                            <div className="flex flex-col gap-4">
+                                <FormField
+                                    control={form.control}
+                                    name="country"
+                                    render={({ field }) => (
+                                        <FormItem className="text-black">
+                                            <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
+                                            <Select>
+                                                <SelectTrigger className="w-[180px]">
+                                                    <SelectValue placeholder="country..." />
+                                                </SelectTrigger>
+                                                <SelectContent className="text-black">
+                                                    <SelectGroup className="text-black">
+                                                        <SelectLabel>Countries</SelectLabel>
+                                                        {Object.values(countries).map((country: any) => (
+                                                            <SelectItem key={country.name} value={country.name}>
+                                                                {country.name}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </SelectGroup>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
                                 <FormField
                                     control={form.control}
                                     name="give"
