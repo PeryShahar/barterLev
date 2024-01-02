@@ -42,6 +42,7 @@ model User {
   image         String?
   give          String?
   receive       String?
+  country       String?
   accounts      Account[]
   sessions      Session[]
 }

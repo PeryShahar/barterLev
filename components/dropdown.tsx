@@ -61,6 +61,7 @@ const Dropdown = () => {
 
     const [receiveText, setReceiveText] = useState(session?.user?.receive)
     const [giveText, setGiveText] = useState(session?.user?.give)
+    const [userCountry, setUserCountry] = useState(session?.user?.country)
 
     const editProfileWithUserEmail = editProfile.bind(null, session?.user?.id)
 
@@ -72,7 +73,6 @@ const Dropdown = () => {
             country: ""
         },
     })
-    console.log(countries)
     return (
         <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5'>
 
@@ -110,15 +110,17 @@ const Dropdown = () => {
                                     render={({ field }) => (
                                         <FormItem className="text-black">
                                             <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
-                                            <Select>
-                                                <SelectTrigger className="w-[180px]">
-                                                    <SelectValue placeholder="country..." />
+                                            <Select {...field} value={userCountry} onValueChange={setUserCountry}>
+                                                <SelectTrigger  className="w-[11.25rem]">
+                                                    <SelectValue placeholder='choose a country...' aria-label={userCountry}>
+                                                        {userCountry}
+                                                    </SelectValue>
                                                 </SelectTrigger>
                                                 <SelectContent className="text-black">
                                                     <SelectGroup className="text-black">
                                                         <SelectLabel>Countries</SelectLabel>
                                                         {Object.values(countries).map((country: any) => (
-                                                            <SelectItem key={country.name} value={country.name}>
+                                                            <SelectItem  key={country.name} value={country.name}>
                                                                 {country.name}
                                                             </SelectItem>
                                                         ))}

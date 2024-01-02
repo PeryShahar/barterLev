@@ -6,12 +6,14 @@ import { revalidatePath } from "next/cache";
 export async function editProfile(userId:any, formData: FormData) {
     const schema = z.object({
         give: z.string(),
-        receive: z.string()
+        receive: z.string(),
+        country: z.string()
     })
     
     const parse = schema.safeParse({
         give: formData.get('give'),
         receive: formData.get('receive'),
+        country: formData.get('country')
     })
   
     if (!parse.success) {
@@ -28,6 +30,7 @@ export async function editProfile(userId:any, formData: FormData) {
             data: {
                 give: dataUser.give,
                 receive: dataUser.receive,
+                country: dataUser.country,
             },
           })
       revalidatePath('/timeline')
