@@ -18,7 +18,7 @@ export default async function Page() {
             },
             NOT: [{ give: null }, { give: "" }, { receive: null }, { receive: '' }],
         },
-        select: { id: true, name: true, email: true, image: true, give: true, receive: true }
+        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
     });
 
     await wait(1000);
@@ -27,7 +27,7 @@ export default async function Page() {
         <div className="border-3 border-black h-full">
             {users.map((user) => {
                 return (
-                    <UserCard key={user.id} name={user.name} image={user.image} give={user.give} receive={user.receive} />
+                    <UserCard key={user.id} name={user.name} image={user.image} give={user.give} receive={user.receive} country={user.country} />
                 )
             })}
         </div>
