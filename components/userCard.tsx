@@ -13,14 +13,13 @@ type User = {
     give: number;
     receive: number;
     country: string;
- }
- 
-
-interface UserCardProps {
-   user: User
 }
 
-const UserCard = ({ user}: UserCardProps) => {
+interface UserCardProps {
+    user: User
+}
+
+const UserCard = ({ user }: UserCardProps) => {
     const { name, image, give, receive, country } = user;
 
     return (
@@ -31,12 +30,12 @@ const UserCard = ({ user}: UserCardProps) => {
                     <AvatarFallback>X</AvatarFallback>
                 </Avatar>
                 <div className="max-md:text-center">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 max-md:flex-col max-md:gap-2">
                         <h3 className="text-xl font-semibold">{name}</h3>
-                    <div className="flex items-center"> 
-                    <IoLocationSharp />
-                    <span className="text-gray-500"> {country}</span>
-                    </div>
+                        <div className="flex items-center">
+                            <IoLocationSharp />
+                            <span className="text-gray-500"> {country}</span>
+                        </div>
                     </div>
                     <div className="flex flex-col gap-2 mt-2">
                         <div><h6 className="font-medium text-lg">What do I want to give?</h6>

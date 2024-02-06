@@ -32,11 +32,11 @@ export default async function SignInPage() {
       }}></div>
 
       <div className="max-md:m-2 z-10">
-        <h1 className="max-md:text-center mt-10 mb-4 text-4xl font-bold">Trade Treasures, Make Connections</h1>
-        <div className=" flex flex-col items-center mt-10 mb-10 p-10 shadow-md bg-white bg-opacity-70 text-black">
-          <h1 className="mt-10 mb-4 text-4xl font-bold">Join Us</h1>
+        <h1 className="max-md:text-center mt-2 mb-4 text-4xl font-bold">Trade Treasures, Make Connections</h1>
+        <div className="flex flex-col items-center mt-10 mb-10 p-10 shadow-md bg-white bg-opacity-70 text-black">
+          <h1 className="mt-6 mb-4 text-4xl font-bold">Join Us</h1>
           <GoogleSignInButton />
-          <FacebookSignInButton />
+          {/* <FacebookSignInButton /> */}
           {/* <span className="text-2xl font-semibold text-center mt-8">
             Or
           </span> */}
