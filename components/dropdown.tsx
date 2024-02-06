@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { editProfile } from "@/lib/actions"
+import SelectCountry from "./countrySelect";
 
 import {
     DropdownMenu,
@@ -34,16 +35,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 import { Button } from './ui/button';
 import { Input } from "./ui/input"
@@ -109,23 +100,7 @@ const Dropdown = () => {
                                     render={({ field }) => (
                                         <FormItem className="text-black">
                                             <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
-                                            <Select {...field} value={userCountry} onValueChange={setUserCountry}>
-                                                <SelectTrigger  className="w-[11.25rem]">
-                                                    <SelectValue placeholder='choose a country...' aria-label={userCountry}>
-                                                        {userCountry}
-                                                    </SelectValue>
-                                                </SelectTrigger>
-                                                <SelectContent className="text-black">
-                                                    <SelectGroup className="text-black">
-                                                        <SelectLabel>Countries</SelectLabel>
-                                                        {Object.values(countries).map((country: any) => (
-                                                            <SelectItem  key={country.name} value={country.name}>
-                                                                {country.name}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectGroup>
-                                                </SelectContent>
-                                            </Select>
+                                            <SelectCountry field={field} userCountry={userCountry} setUserCountry={setUserCountry}/>
                                             <FormMessage />
                                         </FormItem>
                                     )}

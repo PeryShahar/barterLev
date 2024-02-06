@@ -1,8 +1,11 @@
+
+"use server"
 import { getServerSession } from "next-auth";
 
-import UserCard from "@/components/userCard";
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import FilterByCountry from "@/components/filterByCountry";
+import TimelineUsers from "@/components/timelineUsers";
 
 const wait = (ms: number) => new Promise((rs) => setTimeout(rs, ms));
 
@@ -25,11 +28,8 @@ export default async function Page() {
 
     return (
         <div className="border-3 border-black h-full">
-            {users.map((user) => {
-                return (
-                    <UserCard key={user.id} user={user} />
-                )
-            })}
+            <FilterByCountry />
+            <TimelineUsers users={users} />
         </div>
     );
 }
