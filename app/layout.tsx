@@ -12,7 +12,7 @@ const singleDay = Single_Day({
 })
 
 export const metadata = {
-    title: "Barter Buddy",
+    title: "BarterLev",
     description: "",
 };
 

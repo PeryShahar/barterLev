@@ -16,8 +16,8 @@ const Navbar = () => {
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div className='flex flex-row items-center gap-4'>
-                        <Image src={barterBuddyLogo} alt="Barter Buddy Logo" width={40} height={40} />
-                        <div className='font-single text-white text-4xl tracking-widest'>Barter Buddy</div>
+                        <Image src={barterBuddyLogo} alt="BarterLev Logo" width={40} height={40} />
+                        <div className='font-single text-white text-4xl tracking-widest'>BarterLev</div>
                     </div>
                     <div className="flex space-x-4">
                         {session && <Dropdown />}
