@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useState } from "react"
 import { signOut, useSession } from "next-auth/react";
 import { countries } from 'countries-list';
-console.log('countries: ', countries);
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
