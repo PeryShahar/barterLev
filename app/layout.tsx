@@ -1,6 +1,6 @@
 import { Inter, Single_Day } from "next/font/google";
 import { NextAuthProvider } from "./providers";
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import "./globals.css";
 
 
@@ -28,7 +28,7 @@ export default function RootLayout({
             </head>
             <body className={inter.className + " flex flex-col"}>
                 <NextAuthProvider>
-                    {/* <Navbar /> */}
+                    <Navbar />
                     {children}
                 </NextAuthProvider>
             </body>
