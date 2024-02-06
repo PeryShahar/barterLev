@@ -7,15 +7,22 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { IoLocationSharp } from "react-icons/io5";
 
+type User = {
+    name: string;
+    image: string;
+    give: number;
+    receive: number;
+    country: string;
+ }
+ 
+
 interface UserCardProps {
-    name: string | null
-    image: string | null
-    give: string | null
-    receive: string | null
-    country: string | null
+   user: User
 }
 
-const UserCard = ({ name, image, give, receive, country }: UserCardProps) => {
+const UserCard = ({ user}: UserCardProps) => {
+    const { name, image, give, receive, country } = user;
+
     return (
         <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-red-800 m-16 text-black rounded-2xl">
             <div className="max-md:flex-col flex gap-4">

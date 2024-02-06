@@ -27,7 +27,7 @@ export default async function Page() {
         <div className="border-3 border-black h-full">
             {users.map((user) => {
                 return (
-                    <UserCard key={user.id} name={user.name} image={user.image} give={user.give} receive={user.receive} country={user.country} />
+                    <UserCard key={user.id} user={user} />
                 )
             })}
         </div>
