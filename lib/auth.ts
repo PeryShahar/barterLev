@@ -13,6 +13,14 @@ import prisma from "./prisma";
 export const authConfig: any = {
     adapter: PrismaAdapter(prisma) as Adapter,
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+        }),
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID as string,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
+        })
         // CredentialsProvider({
         //     name: "Sign in",
         //     credentials: {
@@ -42,19 +50,11 @@ export const authConfig: any = {
         //         return null;
         //     },
         // }),
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-        }),
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_CLIENT_ID as string,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
-        })
     ],
     callbacks: {
-        async session({session, user}:any) {
-                session.user = user;
-                return session;
+        async session({ session, user }: any) {
+            session.user = user;
+            return session;
         }
     }
 };
