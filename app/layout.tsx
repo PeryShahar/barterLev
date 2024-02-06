@@ -13,7 +13,8 @@ const singleDay = Single_Day({
 
 export const metadata = {
     title: "BarterLev",
-    description: "Do it",
+    description: "Trade Treasures, Make Connections"
+    ,
 };
 
 export default function RootLayout({
