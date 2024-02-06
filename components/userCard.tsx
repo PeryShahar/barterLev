@@ -50,7 +50,7 @@ const UserCard = ({ user }: UserCardProps) => {
             </div>
             <div className="max-md:flex-col flex gap-4 ">
                 <Separator orientation="vertical" className="h-auto" />
-                <Button className="self-center">Let's Talk!</Button>
+                <Button className="self-center">Lets Talk!</Button>
             </div>
         </div>
     )

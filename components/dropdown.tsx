@@ -88,7 +88,7 @@ const Dropdown = () => {
                     <DialogHeader >
                         <DialogTitle>Edit profile</DialogTitle>
                         <DialogDescription className='text-xl'>
-                            Make changes to your profile here. Click save when you're done.
+                            Make changes to your profile here. Click save when you are done.
                         </DialogDescription>
                     </DialogHeader>
                     <Form {...form}>
@@ -100,7 +100,7 @@ const Dropdown = () => {
                                     render={({ field }) => (
                                         <FormItem className="text-black">
                                             <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
-                                            <SelectCountry field={field} userCountry={userCountry} setUserCountry={setUserCountry}/>
+                                            <SelectCountry field={field} userCountry={userCountry} setUserCountry={setUserCountry} />
                                             <FormMessage />
                                         </FormItem>
                                     )}
