@@ -1,9 +1,13 @@
+'use client'
+import { useState } from "react";
 import UserCard from "./userCard";
 
-const TimelineUsers = ({ users }: any) => {
+const TimelineUsers = ({ initialUsers }: any) => {
+    const [usersToDisplay, setUsers] = useState(initialUsers);
+
     return (
         <>
-            {users.map((user: any) => {
+            {usersToDisplay.map((user: any) => {
                 return (
                     <UserCard key={user.id} user={user} />
                 )

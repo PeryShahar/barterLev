@@ -1,13 +1,10 @@
 
-"use server"
 import { getServerSession } from "next-auth";
 
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import FilterByCountry from "@/components/filterByCountry";
 import TimelineUsers from "@/components/timelineUsers";
-
-const wait = (ms: number) => new Promise((rs) => setTimeout(rs, ms));
 
 export default async function Page() {
     await loginIsRequiredServer();
@@ -24,12 +21,10 @@ export default async function Page() {
         select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
     });
 
-    await wait(1000);
-
     return (
         <div className="border-3 border-black h-full">
             <FilterByCountry />
-            <TimelineUsers users={users} />
+            <TimelineUsers initialUsers={users} />
         </div>
     );
 }
