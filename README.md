@@ -1,4 +1,4 @@
-![barter logo](https://github.com/PeryShahar/barterLev/assets/89962400/b0c49085-8184-43e2-9063-c7aa0c65450f)
+![output-onlinepngtools](https://github.com/PeryShahar/barterLev/assets/89962400/83447f0d-1011-47bc-a6a4-a39dd361f1ad)
 
 <div align="center">
   <h1>Welcome to <strong>BarterLev</strong> repository</h1>
@@ -8,14 +8,14 @@
 
 ## 💜 About BarterLev
 
- - My vision is to create a platform where people from across the globe can come together to engage in the timeless practice of bartering. Through this website/app, users will not only trade goods and services but also have the opportunity to enrich their lives in various ways. I aim to provide an environment where users can not only exchange items but also gather valuable experiences, acquire useful tools, and even form new and meaningful connections with others. My vision is to foster a vibrant community where the benefits of bartering extend far beyond the transactional aspect, creating a space where users can grow, learn, and make lasting friendships.
+My vision is to create a platform where people from across the globe can come together to engage in the timeless practice of bartering. Through this website/app, users will not only trade goods and services but also have the opportunity to enrich their lives in various ways. I aim to provide an environment where users can not only exchange items but also gather valuable experiences, acquire useful tools, and even form new and meaningful connections with others. My vision is to foster a vibrant community where the benefits of bartering extend far beyond the transactional aspect, creating a space where users can grow, learn, and make lasting friendships.
 
 <br>
 <br>
 
 ## 📖 User Story
 
-- This project is designed to serve as a centralized hub for barter opportunities. Users can register and create accounts, each of which includes two distinct categories: "What I Need" and "What I Can Offer." By selecting from a list of users filtered by location and categories, each user can identify potential matches for barter exchanges. Once a user approves a match, they gain the ability to communicate with one another.
+This project is designed to serve as a centralized hub for barter opportunities. Users can register and create accounts, each of which includes two distinct categories: "What I Need" and "What I Can Offer." By selecting from a list of users filtered by location and categories, each user can identify potential matches for barter exchanges. Once a user approves a match, they gain the ability to communicate with one another.
 
 <br>
 <br>
@@ -41,6 +41,9 @@ To run this project, follow these steps:
 1. Clone the project repository. ```git clone ....```
 2. run ```npm i```
 3. run ```npm run dev```
+
+<br>
+<br>
 
 
 ### FUTURE FEATURES:
