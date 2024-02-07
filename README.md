@@ -1,8 +1,4 @@
 <div align="center">
-![output-onlinepngtools](https://github.com/PeryShahar/barterLev/assets/89962400/83447f0d-1011-47bc-a6a4-a39dd361f1ad)
-</div>
-
-<div align="center">
   <h1>Welcome to <strong>BarterLev</strong> repository</h1>
 </div>
 <br>
