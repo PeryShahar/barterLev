@@ -3,7 +3,7 @@ import { z } from "zod";
 import prisma from "./prisma";
 import { revalidatePath } from "next/cache";
 
-export async function editProfile(userId: any, formData: FormData) {
+export async function editProfile(userId: string | undefined, formData: FormData) {
   'use server'
   const schema = z.object({
     give: z.string(),
@@ -40,7 +40,7 @@ export async function editProfile(userId: any, formData: FormData) {
     return { message: 'Failed to update profile' }
   }
 }
-export async function filterByCountry(country: string) {
+export async function filterByCountry(userId: string | undefined, country: string) {
   'use server'
   const schema = z.object({
     country: z.string()
@@ -58,6 +58,9 @@ export async function filterByCountry(country: string) {
   try {
     const usersByCountry = await prisma.user.findMany({
       where: {
+        id: {
+          not: userId
+        },
         country: dataUser.country
       },
       select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }

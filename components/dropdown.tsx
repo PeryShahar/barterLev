@@ -22,7 +22,6 @@ import {
     DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -44,7 +43,6 @@ const formSchema = z.object({
     give: z.string().max(200),
     country: z.string()
 })
-
 
 const Dropdown = () => {
     const { data: session } = useSession()

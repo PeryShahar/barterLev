@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
@@ -23,6 +24,8 @@ const countryFormSchema = z.object({
 })
 
 const TimelineUsers = ({ initialUsers }: any) => {
+    const { data: session } = useSession()
+
     const [usersToDisplay, setUsersToDisplay] = useState(initialUsers);
     const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -35,7 +38,7 @@ const TimelineUsers = ({ initialUsers }: any) => {
 
     const handleFilterUsers = async () => {
         if (!selectedCountry) return;
-        const filteredUsers = await filterByCountry(selectedCountry)
+        const filteredUsers = await filterByCountry(session?.user.id, selectedCountry)
         setUsersToDisplay(filteredUsers)
     }
 
