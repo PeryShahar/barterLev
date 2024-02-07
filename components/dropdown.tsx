@@ -64,8 +64,7 @@ const Dropdown = () => {
         },
     })
     return (
-        <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5'>
-
+        <div style={{ zIndex: 10000 }} className='flex flex-row items-center gap-5 '>
             <Dialog>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -84,7 +83,7 @@ const Dropdown = () => {
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <DialogContent className='font-single'>
+                <DialogContent className='font-single border-blue-500 max-md:w-11/12'>
                     <DialogHeader >
                         <DialogTitle>Edit profile</DialogTitle>
                         <DialogDescription className='text-xl'>
@@ -93,7 +92,7 @@ const Dropdown = () => {
                     </DialogHeader>
                     <Form {...form}>
                         <form action={editProfileWithUserEmail} className="space-y-8">
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-4 ">
                                 <FormField
                                     control={form.control}
                                     name="country"
