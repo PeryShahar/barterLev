@@ -1,7 +1,9 @@
+![barter logo](https://github.com/PeryShahar/barterLev/assets/89962400/ded14234-2365-409a-8255-e8579db1d026)
 <div align="center">
   <h1>Welcome to <strong>BarterLev</strong> repository</h1>
 </div>
 <br>
+
 
 ## 💜 About BarterLev
 
