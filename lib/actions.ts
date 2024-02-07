@@ -40,14 +40,14 @@ export async function editProfile(userId: any, formData: FormData) {
     return { message: 'Failed to update profile' }
   }
 }
-export async function filterByCountryU(formData: FormData) {
+export async function filterByCountry(country: string) {
   'use server'
   const schema = z.object({
     country: z.string()
   })
 
   const parse = schema.safeParse({
-    country: formData.get('country')
+    country: country
   })
 
   if (!parse.success) {
@@ -62,7 +62,6 @@ export async function filterByCountryU(formData: FormData) {
       },
       select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
     });
-    console.log('usersByCountry: ', usersByCountry);
     revalidatePath('/timeline')
     return usersByCountry
   } catch (e) {

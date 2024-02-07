@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import FilterByCountry from "@/components/filterByCountry";
 import TimelineUsers from "@/components/timelineUsers";
 
 export default async function Page() {
@@ -23,7 +22,6 @@ export default async function Page() {
 
     return (
         <div className="border-3 border-black h-full">
-            <FilterByCountry />
             <TimelineUsers initialUsers={users} />
         </div>
     );
