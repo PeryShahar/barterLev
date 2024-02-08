@@ -27,7 +27,7 @@ export default async function SignInPage() {
         backgroundImage: `url(${backgroundImage.src})`, backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%)"
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%)"
       }} className="font-single w-full flex flex-col items-center justify-center min-h-screen py-2">
         <div style={{
           position: "absolute",
@@ -60,9 +60,9 @@ export default async function SignInPage() {
         </div>
       </div>
       <Separator className="w-4/5	m-auto mt-12" />
-      <div className="mt-4 font-single p-10 flex items-center">
+      <div className="mt-4 font-single p-10 flex items-center max-md:text-center">
         <div>
-          <h3 className="text-6xl text-blue-400 max-md:text-center">What is BarterLev?</h3>
+          <h3 className="text-6xl text-blue-400">What is BarterLev?</h3>
           <div className="text-black md:w-4/5 text-xl mt-4">
             <p>BarterLev is a pioneering platform dedicated to facilitating global bartering exchanges, connecting individuals worldwide to engage in a modern-day bartering movement. Founded on the principles of sustainability and community building, BarterLev has emerged as a beacon for those seeking to exchange goods, services, and experiences while fostering cultural understanding and environmental consciousness.</p>
             <br />
@@ -80,8 +80,8 @@ export default async function SignInPage() {
             alt="heart image" />
         </div>
       </div>
-      <Separator className="w-4/5	m-auto mb-4" />
-      <div className="mt-4 font-single p-10">
+      <Separator className="w-4/5	m-auto mb-2" />
+      <div className="mt-2 font-single p-10">
         <h4 className="text-center text-4xl text-rose-400 tracking-wider">Connect with BarterLev Buddies</h4>
       </div>
       <footer className="p-10 bg-sky-500 flex flex-col items-center">
