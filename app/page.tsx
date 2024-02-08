@@ -1,15 +1,17 @@
 
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { getServerSession } from "next-auth";
 import {
   CredentialsSignInButton, FacebookSignInButton,
   GoogleSignInButton,
 } from "@/components/authButtons";
 import { CredentialsForm } from "@/components/credentialsForm";
+import { Separator } from "@/components/ui/separator"
+
 import { authConfig } from "@/lib/auth";
 import backgroundImage from '@/public/background-login.png'
-import { Separator } from "@/components/ui/separator"
 
 
 
@@ -82,8 +84,14 @@ export default async function SignInPage() {
       <div className="mt-4 font-single p-10">
         <h4 className="text-center text-4xl text-rose-400 tracking-wider">Connect with BarterLev Buddies</h4>
       </div>
-      <Separator className="m-auto mb-4" />
-
+      <footer className="p-10 bg-sky-500 flex flex-col items-center">
+        <div className="flex gap-4 font-bold">
+          <Link href=''>About</Link>
+          <Link href=''>Privacy Policy</Link>
+          <Link href=''>Cookies</Link>
+        </div>
+        <span className="opacity-50 text-sm mt-2">© 2024-2024 BarterLev Inc.</span>
+      </footer>
     </>
   );
 }
