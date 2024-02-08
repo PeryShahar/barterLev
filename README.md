@@ -41,15 +41,3 @@ To run this project, follow these steps:
 3. run ```npm run dev```
 
 <br>
-<br>
-
-
-### FUTURE FEATURES:
-- add streets to each country
-- multiple languages (hebrew and spanish)
-- improve design?
-- add facebook & email login
-- change favicon color? 
-- add chat system / direct to email, whatsapp or facebook
-- add diagram for both user story and architecture 
-- our site using cookies
