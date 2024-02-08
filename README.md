@@ -52,3 +52,4 @@ To run this project, follow these steps:
 - change favicon color? 
 - add chat system / direct to email, whatsapp or facebook
 - add diagram for both user story and architecture 
+- our site using cookies
