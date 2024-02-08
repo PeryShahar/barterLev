@@ -87,7 +87,7 @@ export default async function SignInPage() {
       <footer className="p-10 bg-sky-500 flex flex-col items-center">
         <div className="flex gap-4 font-bold">
           <Link href=''>About</Link>
-          <Link href=''>Privacy Policy</Link>
+          <Link href='/privacy-policy'>Privacy Policy</Link>
           <Link href=''>Cookies</Link>
         </div>
         <span className="opacity-50 text-sm mt-2">© 2024-2024 BarterLev Inc.</span>
