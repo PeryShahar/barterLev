@@ -1,4 +1,4 @@
-const PrivacyPolicy = () => {
+const PrivacyPolicyPage = () => {
     return (
         <div className="m-14 p-4 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
             <h1 className="text-center text-2xl font-bold mb-4">Privacy Policy for BarterLev</h1>
@@ -38,4 +38,4 @@ const PrivacyPolicy = () => {
     )
 }
 
-export default PrivacyPolicy;
+export default PrivacyPolicyPage;
