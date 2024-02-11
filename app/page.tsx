@@ -12,13 +12,19 @@ import { Separator } from "@/components/ui/separator"
 
 import { authConfig } from "@/lib/auth";
 import backgroundImage from '@/public/background-login.png'
-
+import prisma from "@/lib/prisma";
 
 
 export default async function SignInPage() {
-  const session = await getServerSession(authConfig);
+  const session: any = await getServerSession(authConfig);
 
   if (session) return redirect("/timeline");
+
+  const usersHomeDisplay = await prisma.user.findMany({
+    select: { name: true, image: true, country: true },
+    take: 3
+  });
+  console.log('usersHomeDisplay: ', usersHomeDisplay);
 
   return (
     <>
@@ -60,7 +66,7 @@ export default async function SignInPage() {
         </div>
       </div>
       <Separator className="w-4/5	m-auto mt-12" />
-      <div className="mt-4 font-single p-10 flex items-center max-md:text-center">
+      <div className=" mt-4 font-single p-10 flex items-center max-md:text-center">
         <div>
           <h3 className="text-6xl text-blue-400">What is BarterLev?</h3>
           <div className="text-black md:w-4/5 text-xl mt-4">
@@ -80,17 +86,66 @@ export default async function SignInPage() {
             alt="heart image" />
         </div>
       </div>
+      <div className="how-it-works-section mt-2 font-single p-10">
+        <h4 className="text-center text-5xl text-rose-400 tracking-wider pt-32">How BarterLev works</h4>
+        <section id="how-it-works" className="py-16 text-black">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center">
+                <div className="rounded-full bg-blue-500 text-white p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM9 9a1 1 0 0 1 2 0v4a1 1 0 1 1-2 0V9zm0-4a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V6a1 1 0 0 1 1-1z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mt-4">Create an Account</h3>
+                <p className="text-center mt-2">Sign up for a free account on our platform.</p>
+              </div>
+
+
+              <div className="flex flex-col items-center">
+                <div className="rounded-full bg-blue-500 text-white p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M13.414 7.414a2 2 0 0 1 2.828 0l3 3a2 2 0 0 1 0 2.828l-3 3a2 2 0 0 1-2.828 0l-3-3a2 2 0 0 1 0-2.828l3-3zM9 5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mt-4">Browse Listings</h3>
+                <p className="text-center mt-2">Explore a wide range of listings from users all over the world.</p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="rounded-full bg-blue-500 text-white p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mt-4">Make an Exchange</h3>
+                <p className="text-center mt-2">Initiate an exchange with another user and negotiate terms.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <Separator className="w-4/5	m-auto mb-2" />
       <div className="mt-2 font-single p-10">
-        <h4 className="text-center text-4xl text-rose-400 tracking-wider">Connect with BarterLev Buddies</h4>
+        <h4 className="text-center text-4xl text-blue-400 tracking-wider mb-6">Connect with BarterLev Buddies</h4>
+        <div className="flex justify-between w-9/12 m-auto max-md:flex-col gap-2">
+          {usersHomeDisplay.length > 0 && usersHomeDisplay.map((user) => (
+            <div key={user.image} className="flex flex-col text-black items-center">
+              <Image className='rounded-full mb-2' src={user.image ?? ''} width={80} height={80} alt="user avatar" />
+              <p>{user.name}</p>
+              <span>{user.country}</span>
+            </div>
+          )
+          )}
+        </div>
       </div>
       <footer className="p-10 bg-sky-500 flex flex-col items-center">
         <div className="flex gap-4 font-bold">
-          <Link href=''>About</Link>
+          <Link href='/about'>About</Link>
           <Link href='/privacy-policy'>Privacy Policy</Link>
-          <Link href=''>Cookies</Link>
+          <Link href='/cookies'>Cookies</Link>
         </div>
-        <span className="opacity-50 text-sm mt-2">© 2024-2024 BarterLev Inc.</span>
+        <span className="opacity-50 text-sm mt-2">© 2024 BarterLev Inc.</span>
       </footer>
     </>
   );

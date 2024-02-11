@@ -97,3 +97,8 @@ nav {
   z-index: 49;
   background-color: #0197f6;
 }
+
+.how-it-works-section {
+  background: url('/wave-haikei.png');
+  background-repeat: no-repeat;
+}
