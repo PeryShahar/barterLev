@@ -104,3 +104,11 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.5); 
+}
