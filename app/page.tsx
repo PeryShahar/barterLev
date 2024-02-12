@@ -78,9 +78,9 @@ export default async function SignInPage() {
             alt="heart image" />
         </div>
       </div>
-      <div className="how-it-works-section mt-2 font-single p-10">
-        <h4 className="text-center text-6xl text-rose-400 tracking-wider mt-60">How BarterLev works</h4>
-        <section id="how-it-works" className="py-16 text-black">
+      <div className="how-it-works-section mt-2 font-single p-10 md:bg-cover">
+        <h4 className="text-center text-6xl text-rose-400 tracking-wider mt-36">How BarterLev works</h4>
+        <section className="py-16 text-black ">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="flex flex-col items-center">
