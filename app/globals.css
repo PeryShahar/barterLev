@@ -89,6 +89,7 @@ body {
     )
     rgb(var(--background-start-rgb));
     background-color: #fdf9f3;
+    background-repeat: no-repeat;
 }
 
 nav {

@@ -26,6 +26,7 @@ export default async function SignInPage() {
         backgroundImage: `url(${backgroundImage.src})`, backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        backgroundAttachment: 'fixed',
         clipPath: "polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%)"
       }} className="font-single w-full flex flex-col items-center justify-center min-h-screen py-2">
         <div style={{
