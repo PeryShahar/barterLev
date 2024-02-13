@@ -72,7 +72,7 @@ const TimelineUsers = ({ initialUsers }: { initialUsers: UserSession[] }) => {
                             <UserCard key={user.id} user={user} />
                         )
                     })
-                    : <div className="text-center text-black text-3xl">
+                    : <div className="font-single text-center text-black text-4xl">
                         No users found...
                     </div>}
             </div>
