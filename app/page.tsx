@@ -11,7 +11,7 @@ import { CredentialsForm } from "@/components/credentialsForm";
 import { Separator } from "@/components/ui/separator"
 
 import { authConfig } from "@/lib/auth";
-import backgroundImage from '@/public/background-login.png'
+import backgroundImage from '@/public/assets/images/background-login.png'
 
 
 export default async function SignInPage() {

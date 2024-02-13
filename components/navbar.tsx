@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Dropdown from './dropdown';
 
-import barterBuddyLogo from '@/public/barter-logo.png'
+import barterBuddyLogo from '@/public/assets/images/barter-logo.png'
 
 const Navbar = () => {
     const { data: session } = useSession()

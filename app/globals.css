@@ -100,12 +100,12 @@ nav {
 }
 
 .how-it-works-section {
-  background: url('/wave-haikei.png');
+  background: url('/assets/images/wave-haikei.png');
   background-repeat: no-repeat;
 }
 
 .zoom {
-  transition: transform .2s; /* Animation */
+  transition: transform .2s;
 }
 
 .zoom:hover {
@@ -113,7 +113,7 @@ nav {
 }
 
 .timeline {
-  background: url('/stacked-peaks-haikei.png');
+  background: url('/assets/images/stacked-peaks-haikei.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
