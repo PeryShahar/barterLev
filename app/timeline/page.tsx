@@ -21,7 +21,7 @@ export default async function Page() {
     });
 
     return (
-        <div className="border-3 border-black h-full">
+        <div className="timeline border-3 border-black h-full">
             <TimelineUsers initialUsers={users} />
         </div>
     );

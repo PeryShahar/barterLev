@@ -111,3 +111,9 @@ nav {
 .zoom:hover {
   transform: scale(1.5); 
 }
+
+.timeline {
+  background: url('/stacked-peaks-haikei.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
