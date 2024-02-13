@@ -1,3 +1,4 @@
+import { IoLocationSharp } from "react-icons/io5";
 import {
     Avatar,
     AvatarFallback,
@@ -5,18 +6,11 @@ import {
 } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
-import { IoLocationSharp } from "react-icons/io5";
 
-type User = {
-    name: string;
-    image: string;
-    give: number;
-    receive: number;
-    country: string;
-}
+import { UserSession } from "@/types";
 
 interface UserCardProps {
-    user: User
+    user: UserSession
 }
 
 const UserCard = ({ user }: UserCardProps) => {
@@ -50,7 +44,7 @@ const UserCard = ({ user }: UserCardProps) => {
             </div>
             <div className="max-md:flex-col flex gap-4 ">
                 <Separator orientation="vertical" className="h-auto" />
-                <Button className="self-center">Lets Talk!</Button>
+                <Button className="self-center">Let&apos;s Talk!</Button>
             </div>
         </div>
     )

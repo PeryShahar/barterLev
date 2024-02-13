@@ -5,29 +5,30 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+
+import UserCard from "./userCard";
+import SelectCountry from "./countrySelect";
+
 import {
     Form,
     FormField,
     FormItem,
     FormMessage,
 } from "@/components/ui/form"
-
 import { Button } from "./ui/button";
 
 import { filterByCountry } from "@/lib/actions";
-
-import UserCard from "./userCard";
-import SelectCountry from "./countrySelect";
+import { UserSession } from "@/types";
 
 const countryFormSchema = z.object({
     country: z.string()
 })
 
-const TimelineUsers = ({ initialUsers }: any) => {
+const TimelineUsers = ({ initialUsers }: { initialUsers: UserSession[] }) => {
     const { data: session } = useSession()
 
-    const [usersToDisplay, setUsersToDisplay] = useState(initialUsers);
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const [usersToDisplay, setUsersToDisplay] = useState<UserSession[]>(initialUsers);
+    const [selectedCountry, setSelectedCountry] = useState<string>('');
 
     const form = useForm<z.infer<typeof countryFormSchema>>({
         resolver: zodResolver(countryFormSchema),
@@ -39,7 +40,7 @@ const TimelineUsers = ({ initialUsers }: any) => {
     const handleFilterUsers = async () => {
         if (!selectedCountry) return;
         const filteredUsers = await filterByCountry(session?.user.id, selectedCountry)
-        setUsersToDisplay(filteredUsers)
+        if (Array.isArray(filteredUsers)) setUsersToDisplay(filteredUsers)
     }
 
     return (

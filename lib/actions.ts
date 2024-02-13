@@ -69,6 +69,6 @@ export async function filterByCountry(userId: string | undefined, country: strin
     revalidatePath('/timeline')
     return usersByCountry;
   } catch (e) {
-    return { message: 'Failed to update profile' }
+    throw new Error('error in filter users')
   }
 }
