@@ -92,13 +92,6 @@ body {
     background-repeat: no-repeat;
 }
 
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 49;
-  background-color: #0197f6;
-}
-
 .how-it-works-section {
   background: url('/assets/images/wave-haikei.png');
   background-repeat: no-repeat;

@@ -13,7 +13,7 @@ const Navbar = () => {
     const router = useRouter()
 
     return (
-        <nav className="p-4">
+        <nav className="bg-sky-500 sticky top-0 z-50 p-4">
             <div className="container mx-auto">
                 <div className={`flex items-center ${session ? "justify-between" : "justify-between max-md:justify-center"} max-[450px]:flex-col`}>
                     <div onClick={() => router.push(session ? '/timeline' : '/')} className='flex flex-row items-center gap-4 cursor-pointer'>
