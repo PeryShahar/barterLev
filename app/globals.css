@@ -113,6 +113,7 @@ nav {
 }
 
 .timeline {
+  min-height: 100vh;
   background: url('/assets/images/stacked-peaks-haikei.png');
   background-repeat: no-repeat;
   background-size: cover;

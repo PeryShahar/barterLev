@@ -1,10 +1,10 @@
 'use server'
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import prisma from "./prisma";
-import { revalidatePath } from "next/cache";
 
 export async function editProfile(userId: string | undefined, formData: FormData) {
-  'use server'
+
   const schema = z.object({
     give: z.string(),
     receive: z.string(),
@@ -41,7 +41,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
   }
 }
 export async function filterByCountry(userId: string | undefined, country: string) {
-  'use server'
+
   const schema = z.object({
     country: z.string()
   })
@@ -55,6 +55,7 @@ export async function filterByCountry(userId: string | undefined, country: strin
   }
 
   const dataUser = parse.data
+
   try {
     const usersByCountry = await prisma.user.findMany({
       where: {
@@ -66,7 +67,7 @@ export async function filterByCountry(userId: string | undefined, country: strin
       select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
     });
     revalidatePath('/timeline')
-    return usersByCountry
+    return usersByCountry;
   } catch (e) {
     return { message: 'Failed to update profile' }
   }
