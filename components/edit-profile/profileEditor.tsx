@@ -73,7 +73,6 @@ const ProfileEditor = ({ userData, setUserData, form, updateUserProfile }: Profi
             </DropdownMenu>
             <DialogContent className='font-single border-blue-500 max-md:w-11/12'>
                 <DialogHeader >
-                    <DialogTitle>Edit profile</DialogTitle>
                     <DialogDescription className='text-xl'>
                         Make changes to your profile here. Click save when you are done.
                     </DialogDescription>

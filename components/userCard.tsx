@@ -17,7 +17,7 @@ const UserCard = ({ user }: UserCardProps) => {
     const { name, image, give, receive, country } = user;
 
     return (
-        <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-red-800 m-16 text-black rounded-2xl">
+        <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-rose-500 bg-slate-100 bg-opacity-50 m-16 text-black rounded-2xl">
             <div className="max-md:flex-col flex gap-4">
                 <Avatar className="ml-2 self-center size-20">
                     <AvatarImage src={image ?? ''} alt="User Avatar" />
@@ -43,7 +43,7 @@ const UserCard = ({ user }: UserCardProps) => {
                 </div>
             </div>
             <div className="max-md:flex-col flex gap-4 ">
-                <Separator orientation="vertical" className="h-auto" />
+                <Separator orientation="vertical" className="h-auto bg-black" />
                 <Button className="self-center">Let&apos;s Talk!</Button>
             </div>
         </div>
