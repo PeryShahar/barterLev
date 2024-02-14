@@ -92,6 +92,25 @@ body {
     background-repeat: no-repeat;
 }
 
+.hero{
+  position: relative;
+  background-image: url('/assets/images/background-login.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
+}
+
+.hero-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 25, 25, 0.6);
+}
+
 .how-it-works-section {
   background: url('/assets/images/wave-haikei.png');
   background-repeat: no-repeat;
