@@ -1,46 +1,42 @@
-import { useState } from "react"
-import { useSession } from "next-auth/react";
+'use client'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-import ProfileEditor from "./edit-profile/profileEditor";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
-import { editProfile } from "@/lib/actions"
-
-const formSchema = z.object({
-    receive: z.string().max(200),
-    give: z.string().max(200),
-    country: z.string()
-})
 
 const Dropdown = () => {
+    const router = useRouter()
     const { data: session } = useSession()
 
-    const [userData, setUserData] = useState({
-        receiveText: session?.user?.receive,
-        giveText: session?.user?.give,
-        userCountry: session?.user?.country
-    });
+    const handleLogOut = () => {
+        signOut({ callbackUrl: '/' });
+    }
 
-    const updateUserProfile = editProfile.bind(null, session?.user?.id)
-
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            receive: "",
-            give: "",
-            country: ""
-        },
-    })
     return (
         <>
-            <ProfileEditor
-                userData={userData}
-                setUserData={setUserData}
-                form={form}
-                updateUserProfile={updateUserProfile} />
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Image className='border-2 rounded-full cursor-pointer' src={session?.user?.image!} alt="User Avatar" width={50} height={50} />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-32 font-single">
+                    <DropdownMenuItem onClick={() => router.push('/my-profile')} className='text-base cursor-pointer'>
+                        My Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className='text-base cursor-pointer' onClick={() => handleLogOut()}>
+                        Log out
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </>
     )
 }

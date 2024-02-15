@@ -34,8 +34,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
         country: dataUser.country,
       },
     })
-    revalidatePath('/timeline')
-    return { message: `update profile ${dataUser}` }
+    revalidatePath('/my-profile')
   } catch (e) {
     return { message: 'Failed to update profile' }
   }

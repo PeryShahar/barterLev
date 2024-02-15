@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { IoLocationSharp } from "react-icons/io5";
 import {
     Avatar,
@@ -14,7 +15,9 @@ interface UserCardProps {
 }
 
 const UserCard = ({ user }: UserCardProps) => {
-    const { name, image, give, receive, country } = user;
+    const router = useRouter()
+
+    const { id, name, image, give, receive, country } = user;
 
     return (
         <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-rose-500 bg-slate-100 bg-opacity-50 m-16 text-black rounded-2xl">
@@ -44,7 +47,7 @@ const UserCard = ({ user }: UserCardProps) => {
             </div>
             <div className="max-md:flex-col flex gap-4 ">
                 <Separator orientation="vertical" className="h-auto bg-black" />
-                <Button className="self-center">Let&apos;s Talk!</Button>
+                <Button onClick={() => router.push(`/timeline/${id}`)} className="self-center">Go To Profile</Button>
             </div>
         </div>
     )

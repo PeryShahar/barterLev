@@ -25,6 +25,7 @@ const countryFormSchema = z.object({
 })
 
 const TimelineUsers = ({ initialUsers }: { initialUsers: UserSession[] }) => {
+
     const { data: session } = useSession()
 
     const [usersToDisplay, setUsersToDisplay] = useState<UserSession[]>(initialUsers);

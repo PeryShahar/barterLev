@@ -1,14 +1,12 @@
-import Image from "next/image"
-import { useSession, signOut } from "next-auth/react"
+'use client'
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { useState } from "react"
+import { useSession } from "next-auth/react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+
+import { editProfile } from "@/lib/actions"
 
 import {
     Dialog,
@@ -16,7 +14,6 @@ import {
     DialogContent,
     DialogDescription,
     DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
 
@@ -32,45 +29,40 @@ import { Button } from "../ui/button"
 import SelectCountry from "../countrySelect"
 import ProfileField from "./profileField"
 
-interface ProfileEditorProps {
-    userData: {
-        receiveText: string | undefined;
-        giveText: string | undefined;
-        userCountry: string | undefined;
-    };
-    setUserData: React.Dispatch<
-        React.SetStateAction<{
-            receiveText: string | undefined;
-            giveText: string | undefined;
-            userCountry: string | undefined;
-        }>
-    >;
-    form: any
-    updateUserProfile: any
-}
 
-const ProfileEditor = ({ userData, setUserData, form, updateUserProfile }: ProfileEditorProps) => {
+const formSchema = z.object({
+    receive: z.string().max(200),
+    give: z.string().max(200),
+    country: z.string()
+})
+
+
+const ProfileEditor = () => {
+
     const { data: session } = useSession()
+
+    const [userData, setUserData] = useState({
+        receiveText: session?.user?.receive,
+        giveText: session?.user?.give,
+        userCountry: session?.user?.country
+    });
+
+    const updateUserProfile = editProfile.bind(null, session?.user?.id)
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            receive: "",
+            give: "",
+            country: ""
+        },
+    })
 
     return (
         <Dialog>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Image className='border-2 rounded-full cursor-pointer' src={session?.user?.image!} alt="User Avatar" width={50} height={50} />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-32 font-single">
-                    <DropdownMenuLabel className='text-lg'>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DialogTrigger asChild>
-                        <DropdownMenuItem className='text-base cursor-pointer'>
-                            Edit Profile
-                        </DropdownMenuItem>
-                    </DialogTrigger>
-                    <DropdownMenuItem className='text-base cursor-pointer' onClick={() => signOut()}>
-                        Log out
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+            <DialogTrigger asChild>
+                <Button className="self-center">Edit Profile</Button>
+            </DialogTrigger>
             <DialogContent className='font-single border-blue-500 max-md:w-11/12'>
                 <DialogHeader >
                     <DialogDescription className='text-xl'>
