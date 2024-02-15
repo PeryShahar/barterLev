@@ -3,6 +3,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ProfileEditor from "@/components/edit-profile/profileEditor";
 import BackButton from "@/components/back";
+import { Button } from "./ui/button";
 import { Separator } from "@/components/ui/separator"
 import { UserSession } from "@/types";
 
@@ -37,7 +38,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
             </div>
             <div className="flex gap-2 m-auto mt-8">
                 <BackButton path={'/timeline'} />
-                {isMyProfile ? <ProfileEditor /> : null}
+                {isMyProfile ? <ProfileEditor /> : <Button>Let&apos;s Talk</Button>}
             </div>
         </div>
     )
