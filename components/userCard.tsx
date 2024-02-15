@@ -47,7 +47,7 @@ const UserCard = ({ user }: UserCardProps) => {
             </div>
             <div className="max-md:flex-col flex gap-4 ">
                 <Separator orientation="vertical" className="h-auto bg-black" />
-                <Button onClick={() => router.push(`/timeline/${id}`)} className="self-center">Go To Profile</Button>
+                <Button onClick={() => router.push(`/timeline/${id}`)} className="font-single self-center">Go To Profile</Button>
             </div>
         </div>
     )
