@@ -10,7 +10,7 @@ import { UserSession } from "@/types";
 const ProfileInfo = ({ user, isMyProfile }: any) => {
 
     return (
-        <div className="font-single flex flex-col m-14 p-6 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
+        <div className="font-single flex flex-col m-8 p-6 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
             <div className="flex flex-col items-center">
                 <Avatar className="ml-2 self-center size-40">
                     <AvatarImage src={user?.image ?? ''} alt="User Avatar" />
