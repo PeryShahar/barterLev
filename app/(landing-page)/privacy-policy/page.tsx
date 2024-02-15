@@ -1,6 +1,6 @@
 const PrivacyPolicyPage = () => {
     return (
-        <div className="m-14 p-4 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
+        <>
             <h1 className="text-center text-2xl font-bold mb-4">Privacy Policy for BarterLev</h1>
             <p>At BarterLev, we are committed to protecting the privacy and security of our users personal information. This Privacy Policy outlines how we collect, use, and safeguard the information you provide to us through our website and mobile application.</p>
             <br />
@@ -34,7 +34,7 @@ const PrivacyPolicyPage = () => {
             <br />
             <h2>7. Contact Us</h2>
             <p>If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at <a href="mailto:contact@barterlev.com">contact@barterlev.com</a>.</p>
-        </div>
+        </>
     )
 }
 

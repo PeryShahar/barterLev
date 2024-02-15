@@ -2,7 +2,7 @@ import React from 'react';
 
 const CookiesPage = () => {
     return (
-        <div className="m-14 p-4 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
+        <>
             <h1 className="text-center text-2xl font-bold mb-4">Cookies Policy for BarterLev</h1>
             <p className="mb-4">This Cookies Policy explains what cookies are, how we use them, and your choices regarding cookies when using our website and mobile application.</p>
             <h2 className="text-lg font-bold mt-4">What are cookies?</h2>
@@ -20,7 +20,7 @@ const CookiesPage = () => {
             <p className="mb-4">We may update this Cookies Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes to this policy by posting the updated version on our website or mobile application.</p>
             <h2 className="text-lg font-bold mt-4">Contact Us</h2>
             <p className="mb-4">If you have any questions or concerns about this Cookies Policy or our use of cookies, please contact us at <a href="mailto:contact@barterlev.com">contact@barterlev.com</a>.</p>
-        </div>
+        </>
     )
 }
 
