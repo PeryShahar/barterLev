@@ -3,11 +3,11 @@
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
-const BackButton = () => {
+const BackButton = ({ path }: { path: string }) => {
     const router = useRouter()
 
     return (
-        <Button onClick={() => router.back()} className="self-center">← Back</Button>
+        <Button onClick={() => router.push(path)} className="self-center">← Back</Button>
     )
 }
 export default BackButton;
