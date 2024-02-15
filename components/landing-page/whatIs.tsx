@@ -14,7 +14,7 @@ const WhatIs = () => {
             </div>
             <div className="w-full max-md:hidden">
                 <Image
-                    src='/heart.png'
+                    src='/assets/images/heart.png'
                     width={300}
                     height={300}
                     alt="heart image" />
