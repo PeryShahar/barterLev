@@ -3,11 +3,10 @@
 import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ProfileEditor from "@/components/edit-profile/profileEditor";
+import BackButton from "@/components/back";
 
 const MyProfile = () => {
     const { data: session } = useSession()
-    console.log('session: ', session?.user?.give);
-
 
     return (
         <>
@@ -31,7 +30,10 @@ const MyProfile = () => {
                         <p>{session?.user?.receive}</p>
                     </div>
                 </div>
-                <ProfileEditor />
+                <div className="flex gap-2 m-auto mt-8">
+                    <BackButton />
+                    <ProfileEditor />
+                </div>
             </div>
         </>
     )
