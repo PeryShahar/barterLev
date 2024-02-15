@@ -19,7 +19,7 @@ const CookiesPage = () => {
             <h2 className="text-lg font-bold mt-4">Changes to this Cookies Policy</h2>
             <p className="mb-4">We may update this Cookies Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes to this policy by posting the updated version on our website or mobile application.</p>
             <h2 className="text-lg font-bold mt-4">Contact Us</h2>
-            <p className="mb-4">If you have any questions or concerns about this Cookies Policy or our use of cookies, please contact us at <a href="mailto:contact@barterlev.com">contact@barterlev.com</a>.</p>
+            <p className="mb-2">If you have any questions or concerns about this Cookies Policy or our use of cookies, please contact us at <a href="mailto:contact@barterlev.com">contact@barterlev.com</a>.</p>
         </>
     )
 }
