@@ -12,6 +12,7 @@ declare module "next-auth" {
             country: string
             id: string
             image: string
+            personal_info: string
         }
     }
 }

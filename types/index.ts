@@ -6,4 +6,5 @@ export type UserSession = {
     give: string | null;
     receive: string | null;
     country: string | null;
+    personal_info?: string | null;
 }

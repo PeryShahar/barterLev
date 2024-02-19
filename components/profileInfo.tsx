@@ -27,6 +27,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
             <div className="flex flex-col gap-2 mt-2">
                 <div>
                     <h6 className="font-medium text-2xl">About Me:</h6>
+                    <p>{user?.personal_info}</p>
                 </div>
                 <div><h6 className="font-medium text-2xl">What do I want to give:</h6>
                     <p>{user?.give}</p>

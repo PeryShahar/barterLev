@@ -8,6 +8,9 @@ import { z } from "zod"
 
 import { editProfile } from "@/lib/actions"
 
+import SelectCountry from "../countrySelect"
+import ProfileField from "./profileField"
+
 import {
     Dialog,
     DialogClose,
@@ -26,16 +29,14 @@ import {
 } from "@/components/ui/form"
 
 import { Button } from "../ui/button"
-import SelectCountry from "../countrySelect"
-import ProfileField from "./profileField"
-
+import { Textarea } from "@/components/ui/textarea"
 
 const formSchema = z.object({
     receive: z.string().max(200),
     give: z.string().max(200),
-    country: z.string()
+    country: z.string(),
+    personal_info: z.string()
 })
-
 
 const ProfileEditor = () => {
 
@@ -44,7 +45,8 @@ const ProfileEditor = () => {
     const [userData, setUserData] = useState({
         receiveText: session?.user?.receive,
         giveText: session?.user?.give,
-        userCountry: session?.user?.country
+        userCountry: session?.user?.country,
+        personalInfo: session?.user?.personal_info
     });
 
     const updateUserProfile = editProfile.bind(null, session?.user?.id)
@@ -54,7 +56,8 @@ const ProfileEditor = () => {
         defaultValues: {
             receive: "",
             give: "",
-            country: ""
+            country: "",
+            personal_info: ""
         },
     })
 
@@ -72,6 +75,20 @@ const ProfileEditor = () => {
                 <Form {...form}>
                     <form action={updateUserProfile} className="space-y-8">
                         <div className="flex flex-col gap-4 ">
+                            <FormField
+                                control={form.control}
+                                name="personal_info"
+                                render={({ field }) => (
+                                    <FormItem className="text-black">
+                                        <FormLabel className='text-black text-lg'>About Me:</FormLabel>
+                                        <Textarea
+                                            {...field}
+                                            value={userData.personalInfo}
+                                            onChange={(event) => setUserData({ ...userData, personalInfo: event.target.value })} />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <FormField
                                 control={form.control}
                                 name="country"

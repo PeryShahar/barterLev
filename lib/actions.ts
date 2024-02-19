@@ -8,13 +8,15 @@ export async function editProfile(userId: string | undefined, formData: FormData
   const schema = z.object({
     give: z.string(),
     receive: z.string(),
-    country: z.string()
+    country: z.string(),
+    personal_info: z.string()
   })
 
   const parse = schema.safeParse({
     give: formData.get('give'),
     receive: formData.get('receive'),
-    country: formData.get('country')
+    country: formData.get('country'),
+    personal_info: formData.get('personal_info')
   })
 
   if (!parse.success) {
@@ -32,6 +34,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
         give: dataUser.give,
         receive: dataUser.receive,
         country: dataUser.country,
+        personal_info: dataUser.personal_info
       },
     })
     revalidatePath('/my-profile')
