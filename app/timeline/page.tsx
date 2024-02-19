@@ -17,7 +17,7 @@ export default async function Page() {
             },
             NOT: [{ give: null }, { give: "" }, { receive: null }, { receive: '' }],
         },
-        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
+        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, personal_info: true }
     });
 
     return (
