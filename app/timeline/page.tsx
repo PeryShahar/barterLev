@@ -5,12 +5,10 @@ import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import TimelineUsers from "@/components/timelineUsers";
 
-export default async function Page() {
-    await loginIsRequiredServer();
-
+const fetchAllUsers = async () => {
     const session: any = await getServerSession(authConfig);
 
-    const users = await prisma.user.findMany({
+    return await prisma.user.findMany({
         where: {
             email: {
                 not: session?.user?.email
@@ -19,6 +17,12 @@ export default async function Page() {
         },
         select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true, personal_info: true }
     });
+}
+
+export default async function Page() {
+    await loginIsRequiredServer();
+
+    const users = await fetchAllUsers();
 
     return (
         <div className="timeline border-3 border-black h-full">
