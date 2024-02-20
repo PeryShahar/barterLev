@@ -9,6 +9,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
     give: z.string(),
     receive: z.string(),
     country: z.string(),
+    city: z.string(),
     personal_info: z.string()
   })
 
@@ -16,6 +17,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
     give: formData.get('give'),
     receive: formData.get('receive'),
     country: formData.get('country'),
+    city: formData.get('city'),
     personal_info: formData.get('personal_info')
   })
 
@@ -34,7 +36,8 @@ export async function editProfile(userId: string | undefined, formData: FormData
         give: dataUser.give,
         receive: dataUser.receive,
         country: dataUser.country,
-        personal_info: dataUser.personal_info
+        personal_info: dataUser.personal_info,
+        city: dataUser.city,
       },
     })
     revalidatePath('/my-profile')

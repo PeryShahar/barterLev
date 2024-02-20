@@ -17,7 +17,7 @@ interface UserCardProps {
 const UserCard = ({ user }: UserCardProps) => {
     const router = useRouter()
 
-    const { id, name, image, give, receive, country } = user;
+    const { id, name, image, give, receive, country, city } = user;
 
     return (
         <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-rose-500 bg-slate-100 bg-opacity-50 max-md:m-8 m-16 text-black rounded-2xl">
@@ -31,7 +31,7 @@ const UserCard = ({ user }: UserCardProps) => {
                         <h3 className="text-xl font-semibold">{name}</h3>
                         <div className="flex items-center">
                             <IoLocationSharp />
-                            <span className="text-gray-500"> {country}</span>
+                            <span className="text-gray-500"> {city},{country}</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 mt-2">

@@ -1,4 +1,4 @@
-import React from 'react'; // Import React
+import React, { forwardRef } from 'react'; // Import React
 import { countries } from 'countries-list';
 
 import {
@@ -17,7 +17,7 @@ interface SelectCountryProps {
     setUserCountry: any
 }
 
-const SelectCountry = React.forwardRef(({ field, userCountry, setUserCountry }: SelectCountryProps, ref: React.Ref<HTMLSelectElement>) => {
+const SelectCountry: React.ForwardRefRenderFunction<HTMLDivElement, SelectCountryProps> = ({ field, userCountry, setUserCountry }, ref) => {
     return (
         <>
             <Select {...field} value={userCountry} onValueChange={setUserCountry} ref={ref}>
@@ -39,8 +39,6 @@ const SelectCountry = React.forwardRef(({ field, userCountry, setUserCountry }: 
             </Select>
         </>
     )
-});
+}
 
-SelectCountry.displayName = 'SelectCountry';
-
-export default SelectCountry;
+export default forwardRef(SelectCountry);

@@ -43,6 +43,7 @@ model User {
   give          String?
   receive       String?
   country       String?
+  city          String?
   personal_info String?
   accounts      Account[]
   sessions      Session[]

@@ -20,7 +20,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
                 <h2 className="text-3xl">{user?.name}</h2>
                 <div className="flex items-center">
                     <IoLocationSharp />
-                    <span className="text-gray-500"> {user?.country}</span>
+                    <span className="text-gray-500">{user?.city}, {user?.country}</span>
                 </div>
             </div>
             <Separator className="w-4/5	m-auto mt-12" />

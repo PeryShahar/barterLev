@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,6 +9,7 @@ import { z } from "zod"
 import { editProfile } from "@/lib/actions"
 
 import SelectCountry from "../countrySelect"
+import SelectCity from "../citySelect"
 import ProfileField from "./profileField"
 
 import {
@@ -35,19 +36,22 @@ const formSchema = z.object({
     receive: z.string().max(200),
     give: z.string().max(200),
     country: z.string(),
+    city: z.string(),
     personal_info: z.string()
 })
 
 const ProfileEditor = () => {
 
     const { data: session } = useSession()
-
     const [userData, setUserData] = useState({
         receiveText: session?.user?.receive,
         giveText: session?.user?.give,
         userCountry: session?.user?.country,
+        userCity: session?.user?.city ?? '',
         personalInfo: session?.user?.personal_info
     });
+    const [cities, setCities] = useState([]);
+    console.log('cities: ', cities);
 
     const updateUserProfile = editProfile.bind(null, session?.user?.id)
 
@@ -57,9 +61,32 @@ const ProfileEditor = () => {
             receive: "",
             give: "",
             country: "",
+            city: "",
             personal_info: ""
         },
     })
+
+    useEffect(() => {
+        if (userData.userCountry) {
+            fetchCities(userData.userCountry);
+        }
+    }, [userData.userCountry]);
+
+    const fetchCities = async (country: any) => {
+        try {
+            const response = await fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ country }),
+            });
+            const data = await response.json();
+            setCities(data.data);
+        } catch (error) {
+            console.error("Error fetching cities:", error);
+        }
+    };
 
     return (
         <Dialog>
@@ -89,22 +116,40 @@ const ProfileEditor = () => {
                                     </FormItem>
                                 )}
                             />
-                            <FormField
-                                control={form.control}
-                                name="country"
-                                render={({ field }) => (
-                                    <FormItem className="text-black">
-                                        <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
-                                        <SelectCountry
-                                            field={field}
-                                            userCountry={userData.userCountry}
-                                            setUserCountry={(value: string) =>
-                                                setUserData({ ...userData, userCountry: value })
-                                            } />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                            <div className="flex gap-2">
+                                <FormField
+                                    control={form.control}
+                                    name="country"
+                                    render={({ field }) => (
+                                        <FormItem className="text-black">
+                                            <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
+                                            <SelectCountry
+                                                field={field}
+                                                userCountry={userData.userCountry}
+                                                setUserCountry={(value: string) =>
+                                                    setUserData({ ...userData, userCountry: value })
+                                                } />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="city"
+                                    render={({ field }) => (
+                                        <FormItem className="text-black">
+                                            <FormLabel className="text-black text-lg">Select your city:</FormLabel>
+                                            <SelectCity
+                                                field={field}
+                                                userCity={userData.userCity}
+                                                setUserCity={(value: string) => setUserData({ ...userData, userCity: value })}
+                                                cities={cities}
+                                            />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                             <ProfileField
                                 form={form}
                                 fieldName="give"
