@@ -116,7 +116,7 @@ const ProfileEditor = () => {
                                     </FormItem>
                                 )}
                             />
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 max-md:flex-col">
                                 <FormField
                                     control={form.control}
                                     name="country"
