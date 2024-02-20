@@ -23,11 +23,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`${singleDay.variable}`}>
+        <html suppressHydrationWarning={true} lang="en" className={`${singleDay.variable}`}>
             <head>
                 <link rel='icon' href='/favicon.ico' />
             </head>
-            <body className={inter.className + " flex flex-col"}>
+            <body className={inter.className + " flex flex-col"} suppressHydrationWarning={true}>
                 <NextAuthProvider>
                     <Navbar />
                     {children}

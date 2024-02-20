@@ -1,3 +1,4 @@
+import React from 'react'; // Import React
 import { countries } from 'countries-list';
 
 import {
@@ -11,31 +12,35 @@ import {
 } from "@/components/ui/select"
 
 interface SelectCountryProps {
-field?: any
-userCountry: any
-setUserCountry:any
+    field?: any
+    userCountry: any
+    setUserCountry: any
 }
-const SelectCountry = ({field, userCountry,setUserCountry}: SelectCountryProps) => {
-return (
-    <>
-    <Select {...field} value={userCountry} onValueChange={setUserCountry}>
-        <SelectTrigger  className="w-[11.25rem]">
-            <SelectValue placeholder='choose a country...' aria-label={userCountry}>
-                {userCountry}
-            </SelectValue>
-        </SelectTrigger>
-        <SelectContent className="text-black">
-            <SelectGroup className="text-black">
-                <SelectLabel>Countries</SelectLabel>
-                {Object.values(countries).map((country: any) => (
-                    <SelectItem  key={country.name} value={country.name}>
-                        {country.name}
-                    </SelectItem>
-                ))}
-            </SelectGroup>
-        </SelectContent>
-    </Select>
-    </>
-)
-}
+
+const SelectCountry = React.forwardRef(({ field, userCountry, setUserCountry }: SelectCountryProps, ref: React.Ref<HTMLSelectElement>) => {
+    return (
+        <>
+            <Select {...field} value={userCountry} onValueChange={setUserCountry} ref={ref}>
+                <SelectTrigger className="w-[11.25rem]">
+                    <SelectValue placeholder='choose a country...' aria-label={userCountry}>
+                        {userCountry}
+                    </SelectValue>
+                </SelectTrigger>
+                <SelectContent className="text-black">
+                    <SelectGroup className="text-black">
+                        <SelectLabel>Countries</SelectLabel>
+                        {Object.values(countries).map((country: any) => (
+                            <SelectItem key={country.name} value={country.name}>
+                                {country.name}
+                            </SelectItem>
+                        ))}
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </>
+    )
+});
+
+SelectCountry.displayName = 'SelectCountry';
+
 export default SelectCountry;
