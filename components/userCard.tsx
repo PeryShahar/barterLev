@@ -31,7 +31,7 @@ const UserCard = ({ user }: UserCardProps) => {
                         <h3 className="text-xl font-semibold">{name}</h3>
                         <div className="flex items-center">
                             <IoLocationSharp />
-                            <span className="text-gray-500"> {city},{country}</span>
+                            <span className="text-gray-500"> {city}, {country}</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2 mt-2">
