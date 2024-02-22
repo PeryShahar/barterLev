@@ -171,9 +171,14 @@ const ProfileEditor = () => {
                                 maxLength={200}
                             />
                             <p className="text-rose-500 text-xs">* your profile will only be displayed when there is information provided in the inputs.</p>
-                            <DialogClose asChild>
-                                <Button className="m-auto mt-4" type="submit">Save changes</Button>
-                            </DialogClose>
+                            <div className="flex justify-center gap-4">
+                                <DialogClose asChild>
+                                    <Button className="mt-4" type="button">Cancel</Button>
+                                </DialogClose>
+                                <DialogClose asChild>
+                                    <Button className="mt-4" type="submit">Save changes</Button>
+                                </DialogClose>
+                            </div>
                         </div>
                     </form>
                 </Form>
