@@ -12,6 +12,10 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
 
     return (
         <div className="font-single flex flex-col m-8 p-6 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
+            <div className="flex gap-2 justify-between mt-4">
+                <BackButton path={'/timeline'} />
+                {isMyProfile ? <ProfileEditor /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
+            </div>
             <div className="flex flex-col items-center">
                 <Avatar className="ml-2 self-center size-52">
                     <AvatarImage src={user?.image ?? ''} alt="User Avatar" />
@@ -38,10 +42,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
                 </div>
             </div>
             <Separator className="w-4/5	m-auto mt-8 mb-8" />
-            <div className="flex gap-2 m-auto mt-8">
-                <BackButton path={'/timeline'} />
-                {isMyProfile ? <ProfileEditor /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
-            </div>
+
         </div>
     )
 }
