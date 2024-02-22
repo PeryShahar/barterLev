@@ -20,7 +20,7 @@ const UserCard = ({ user }: UserCardProps) => {
     const { id, name, image, give, receive, country, city } = user;
 
     return (
-        <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6 border-2 border-rose-500 bg-slate-100 bg-opacity-50 max-md:m-8 m-16 text-black rounded-2xl">
+        <div className="max-md:flex-col justify-between p-4 shadow-xl flex gap-6  bg-slate-100 bg-opacity-50 max-md:m-8 m-16 text-black rounded-2xl">
             <div className="max-md:flex-col flex gap-4">
                 <Avatar className="ml-2 self-center size-20">
                     <AvatarImage src={image ?? ''} alt="User Avatar" />
