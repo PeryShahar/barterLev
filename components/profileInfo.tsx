@@ -12,7 +12,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
 
     return (
         <div className="font-single flex flex-col m-8 p-6 text-black border-rose-400 border-2 rounded-lg shadow-2xl">
-            <div className="flex gap-2 justify-between mt-4">
+            <div className="flex gap-2 justify-between mt-4 max-md:mb-8">
                 <BackButton path={'/timeline'} />
                 {isMyProfile ? <ProfileEditor /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
             </div>
