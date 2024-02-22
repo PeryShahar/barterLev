@@ -91,7 +91,7 @@ const ProfileEditor = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="self-center text-lg">Edit Profile</Button>
+                <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
             </DialogTrigger>
             <DialogContent className='font-single border-blue-500 max-md:w-11/12'>
                 <DialogHeader >

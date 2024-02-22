@@ -40,7 +40,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
             <Separator className="w-4/5	m-auto mt-8 mb-8" />
             <div className="flex gap-2 m-auto mt-8">
                 <BackButton path={'/timeline'} />
-                {isMyProfile ? <ProfileEditor /> : <Button>Let&apos;s Talk</Button>}
+                {isMyProfile ? <ProfileEditor /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
             </div>
         </div>
     )
