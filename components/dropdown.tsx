@@ -28,11 +28,11 @@ const Dropdown = () => {
                     <Image className='border-2 rounded-full cursor-pointer' src={session?.user?.image!} alt="User Avatar" width={50} height={50} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-32 font-single">
-                    <DropdownMenuItem onClick={() => router.push('/my-profile')} className='text-base cursor-pointer'>
+                    <DropdownMenuItem onClick={() => router.push('/my-profile')} className='text-xl cursor-pointer'>
                         My Profile
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className='text-base cursor-pointer' onClick={() => handleLogOut()}>
+                    <DropdownMenuItem className='text-xl cursor-pointer' onClick={() => handleLogOut()}>
                         Log out
                     </DropdownMenuItem>
                 </DropdownMenuContent>
