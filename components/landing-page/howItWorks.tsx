@@ -8,22 +8,22 @@ const HowItWorks = () => {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                        <div className="flex gap-4 max-md:flex-col">
+                        <div className="gap-4 max-md:flex-col">
                             <div className="flex flex-col items-center">
                                 <Image className="zoom" src={'/assets/images/sign-up.png'} width={250} height={250} alt="sign-up" />
                                 <h3 className="text-xl text-blue-700 font-bold">Create an Account</h3>
                                 <p className="text-center mt-2 text-lg">Sign up for a free account on our platform.</p>
                             </div>
-                            <Image className='max-md:hidden' src={'/assets/images/arrow-right.svg'} width={70} height={70} alt="arrow-right" />
+                            <Image className='max-md:hidden m-auto mt-4' src={'/assets/images/arrow-right.svg'} width={70} height={70} alt="arrow-right" />
                         </div>
 
-                        <div className="flex mt-24 gap-4 max-md:mt-4 max-md:flex-col">
+                        <div className="mt-24 gap-4 max-md:mt-4 max-md:flex-col">
                             <div className="flex flex-col items-center">
                                 <Image className="zoom" src={'/assets/images/magnifying-glasses.png'} width={250} height={250} alt="magnifying-glasses" />
                                 <h3 className="text-xl text-blue-700 font-bold">Browse Listings</h3>
                                 <p className="text-center mt-2 text-lg">Explore a wide range of listings from users all over the world.</p>
                             </div>
-                            <Image className='max-md:hidden' src={'/assets/images/arrow-right.svg'} width={70} height={70} alt="arrow-right" />
+                            <Image className='max-md:hidden m-auto mt-4' src={'/assets/images/arrow-right.svg'} width={70} height={70} alt="arrow-right" />
                         </div>
 
 
