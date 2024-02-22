@@ -46,7 +46,7 @@ const TimelineUsers = ({ initialUsers }: { initialUsers: UserSession[] }) => {
 
     return (
         <>
-            <div className="max-md:flex-col flex-col items-center justify-between bg-black p-4 shadow-xl flex gap-6 border-2 border-white-800 max-md:m-8 m-16 text-white rounded-2xl">
+            <div className="max-md:flex-col flex-col items-center justify-between bg-black p-4 shadow-xl flex gap-6 max-md:m-8 m-16 text-white rounded-2xl">
                 <p>Filter by country:</p>
                 <Form {...form}>
                     <form action={handleFilterUsers}>
