@@ -22,10 +22,10 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
                     <AvatarFallback>X</AvatarFallback>
                 </Avatar>
                 <h2 className="text-5xl">{user?.name}</h2>
-                <div className="flex items-center">
+                {user?.country ? <div className="flex items-center">
                     <IoLocationSharp />
                     <span className="text-gray-500 text-xl">{user?.city}, {user?.country}</span>
-                </div>
+                </div> : null}
             </div>
             <Separator className="w-4/5	m-auto mt-8 mb-8" />
             <div className="flex flex-col gap-12 mt-2">
@@ -33,13 +33,13 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
                     <h6 className="font-medium text-4xl text-rose-500">About Me:</h6>
                     <p className="text-xl">{user?.personal_info}</p>
                 </div> : null}
-                <div><h6 className="font-medium text-4xl text-rose-500">What do I want to give:</h6>
+                {user?.give ? <div><h6 className="font-medium text-4xl text-rose-500">What do I want to give:</h6>
                     <p className="text-xl">{user?.give}</p>
-                </div>
-                <div>
+                </div> : null}
+                {user?.receive ? <div>
                     <h6 className="font-medium text-4xl text-rose-500">What do I want to receive:</h6>
                     <p className="text-xl">{user?.receive}</p>
-                </div>
+                </div> : null}
             </div>
             <Separator className="w-4/5	m-auto mt-8 mb-8" />
 
