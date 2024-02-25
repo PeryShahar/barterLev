@@ -31,24 +31,27 @@ import {
 
 import { Button } from "../ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
 
 const formSchema = z.object({
     receive: z.string().max(200),
     give: z.string().max(200),
     country: z.string(),
     city: z.string(),
-    personal_info: z.string()
+    personal_info: z.string(),
+    birth_year: z.string()
 })
 
 const ProfileEditor = () => {
-
     const { data: session } = useSession()
+
     const [userData, setUserData] = useState({
         receiveText: session?.user?.receive,
         giveText: session?.user?.give,
         userCountry: session?.user?.country,
         userCity: session?.user?.city ?? '',
-        personalInfo: session?.user?.personal_info
+        personalInfo: session?.user?.personal_info,
+        birthYear: session?.user?.birth_year
     });
     const [cities, setCities] = useState([]);
 
@@ -61,7 +64,8 @@ const ProfileEditor = () => {
             give: "",
             country: "",
             city: "",
-            personal_info: ""
+            personal_info: "",
+            birth_year: "",
         },
     })
 
@@ -111,6 +115,33 @@ const ProfileEditor = () => {
                                             {...field}
                                             value={userData.personalInfo}
                                             onChange={(event) => setUserData({ ...userData, personalInfo: event.target.value })} />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="birth_year"
+                                render={({ field }) => (
+                                    <FormItem className="text-black">
+                                        <FormLabel className='text-black text-lg'>Birth Year:</FormLabel>
+                                        <Select {...field} value={userData.birthYear} onValueChange={(value: string) =>
+                                            setUserData({ ...userData, birthYear: value })
+                                        }>
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Select a year..." aria-label={userData.birthYear?.toString()}>
+                                                    {userData.birthYear}
+                                                </SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    {Array.from({ length: 83 }, (_, i) => {
+                                                        const year = new Date().getFullYear() - 100 + i;
+                                                        return <SelectItem key={year} value={year.toString()}>{year}</SelectItem>;
+                                                    }).reverse()}
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
                                 )}

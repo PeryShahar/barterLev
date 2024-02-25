@@ -45,6 +45,7 @@ model User {
   country       String?
   city          String?
   personal_info String?
+  birth_year    String?
   accounts      Account[]
   sessions      Session[]
 }

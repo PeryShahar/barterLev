@@ -7,7 +7,7 @@ export default async function Page({ params }: { params: { userId: string } }) {
         where: {
             id: params.userId,
         },
-        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, personal_info: true }
+        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true, personal_info: true, birth_year: true }
     });
 
     return (

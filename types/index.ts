@@ -8,4 +8,5 @@ export type UserSession = {
     country: string | null;
     city?: string | null;
     personal_info?: string | null;
+    birth_year?: string | null;
 }

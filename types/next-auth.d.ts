@@ -14,6 +14,7 @@ declare module "next-auth" {
             image: string
             personal_info: string
             city: string
+            birth_year: string
         }
     }
 }

@@ -26,6 +26,9 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
                     <IoLocationSharp />
                     <span className="text-gray-500 text-xl">{user?.city}, {user?.country}</span>
                 </div> : null}
+                {user?.birth_year ? <div className="flex items-center">
+                    <span className="text-gray-500 text-xl">{`${new Date().getFullYear() - user?.birth_year} years old`}</span>
+                </div> : null}
             </div>
             <Separator className="w-4/5	m-auto mt-8 mb-8" />
             <div className="flex flex-col gap-12 mt-2">

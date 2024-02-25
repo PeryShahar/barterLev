@@ -10,7 +10,8 @@ export async function editProfile(userId: string | undefined, formData: FormData
     receive: z.string(),
     country: z.string(),
     city: z.string(),
-    personal_info: z.string()
+    personal_info: z.string(),
+    birth_year: z.string()
   })
 
   const parse = schema.safeParse({
@@ -18,7 +19,8 @@ export async function editProfile(userId: string | undefined, formData: FormData
     receive: formData.get('receive'),
     country: formData.get('country'),
     city: formData.get('city'),
-    personal_info: formData.get('personal_info')
+    personal_info: formData.get('personal_info'),
+    birth_year: formData.get('birth_year')
   })
 
   if (!parse.success) {
@@ -38,6 +40,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
         country: dataUser.country,
         personal_info: dataUser.personal_info,
         city: dataUser.city,
+        birth_year: dataUser.birth_year
       },
     })
     revalidatePath('/my-profile')
