@@ -1,14 +1,23 @@
-'use client'
-
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import ProfileInfo from "@/components/profileInfo";
+import { authConfig } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 
-const MyProfile = () => {
-    const { data: session } = useSession()
+const fetchMyUser = async () => {
+    const session: any = await getServerSession(authConfig);
+
+    return await prisma.user.findUnique({
+        where: {
+            email: session?.user?.email
+        },
+        select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true, personal_info: true, birth_year: true }
+    });
+}
+const MyProfile = async () => {
+    const user = await fetchMyUser()
 
     return (
-        <ProfileInfo user={session?.user} isMyProfile={true} />
-
+        <ProfileInfo user={user} isMyProfile={true} />
     )
 }
 
