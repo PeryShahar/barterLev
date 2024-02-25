@@ -51,7 +51,6 @@ const ProfileEditor = () => {
         personalInfo: session?.user?.personal_info
     });
     const [cities, setCities] = useState([]);
-    console.log('cities: ', cities);
 
     const updateUserProfile = editProfile.bind(null, session?.user?.id)
 
