@@ -69,7 +69,7 @@ export async function filterByCountry(userId: string | undefined, country: strin
         },
         country: dataUser.country
       },
-      select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true }
+      select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true }
     });
     revalidatePath('/timeline')
     return usersByCountry;
