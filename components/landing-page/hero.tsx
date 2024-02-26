@@ -1,4 +1,5 @@
 import { GoogleSignInButton } from "../authButtons"
+import { TextGenerateEffect } from "../ui/text-generate-effect";
 
 const Hero = () => {
     return (
@@ -8,7 +9,8 @@ const Hero = () => {
             <div className="max-md:m-2 z-10">
                 <div className="text-center">
                     <h1 className="max-md:text-center mt-2 mb-4 text-6xl font-bold">Trade <span className="text-rose-400">Treasures</span>, Make <span className="text-rose-400">Connections</span></h1>
-                    <p className="text-3xl p-4">Exchange goods, cultivate connections, and enrich lives worldwide through our bartering platform.</p>
+                    <TextGenerateEffect words="Exchange goods, cultivate connections, and enrich lives worldwide through our bartering platform." className="text-4xl p-4 text-white" />
+                    {/* <p className="text-3xl p-4">Exchange goods, cultivate connections, and enrich lives worldwide through our bartering platform.</p> */}
                 </div>
                 <div className="flex flex-col items-center m-auto max-w-xl mt-10 mb-10 p-10 shadow-md bg-white bg-opacity-70 text-black">
                     <h2 className="mt-6 mb-4 text-5xl font-bold tracking-wider">Join Us</h2>
