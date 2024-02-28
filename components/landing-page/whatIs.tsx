@@ -21,7 +21,7 @@ const WhatIs = () => {
         <section className=" mt-4 font-single p-10 flex items-center max-md:text-center">
             <div>
                 {/* <h3 className="text-6xl text-blue-400">What is BarterLev?</h3> */}
-                <TypewriterEffect className="text-left" words={words} />
+                <TypewriterEffect className="text-left max-md:text-center" words={words} />
                 <div className="text-black md:w-4/5 text-[22px] mt-4">
                     <p>BarterLev is a pioneering platform dedicated to facilitating global bartering exchanges, connecting individuals worldwide to engage in a modern-day bartering movement. Founded on the principles of sustainability and community building, BarterLev has emerged as a beacon for those seeking to exchange goods, services, and experiences while fostering cultural understanding and environmental consciousness.</p>
                     <br />
