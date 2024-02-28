@@ -97,7 +97,7 @@ const ProfileEditor = ({ user }: any) => {
             <DialogTrigger asChild>
                 <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
             </DialogTrigger>
-            <DialogContent className='font-single border-blue-500 max-md:w-11/12'>
+            <DialogContent className='font-single border-blue-500 max-md:w-11/12 max-md:h-5/6 max-md:overflow-scroll'>
                 <DialogHeader >
                     <DialogDescription className='text-xl'>
                         Make changes to your profile here. Click save when you are done.
