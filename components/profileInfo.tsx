@@ -14,7 +14,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
         <div className="font-single flex flex-col m-8 p-6 text-black rounded-lg shadow-2xl">
             <div className="flex gap-2 justify-between mt-4 max-md:mb-8">
                 <BackButton path={'/timeline'} />
-                {isMyProfile ? <ProfileEditor /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
+                {isMyProfile ? <ProfileEditor user={user} /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
             </div>
             <div className="flex flex-col items-center">
                 <Avatar className="ml-2 self-center size-52">
