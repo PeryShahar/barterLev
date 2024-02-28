@@ -156,8 +156,11 @@ const ProfileEditor = () => {
                                             <SelectCountry
                                                 field={field}
                                                 userCountry={userData.userCountry}
-                                                setUserCountry={(value: string) =>
-                                                    setUserData({ ...userData, userCountry: value })
+                                                setUserCountry={(value: string) => {
+                                                    setUserData({ ...userData, userCountry: value, userCity: '' })
+                                                    setCities([])
+
+                                                }
                                                 } />
                                             <FormMessage />
                                         </FormItem>
