@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -10,6 +9,7 @@ import { editProfile } from "@/lib/actions"
 
 import SelectCountry from "../countrySelect"
 import SelectCity from "../citySelect"
+import SelectBirthYear from '../birthYearSelect'
 import ProfileField from "./profileField"
 
 import {
@@ -42,20 +42,19 @@ const formSchema = z.object({
     birth_year: z.string()
 })
 
-const ProfileEditor = () => {
-    const { data: session } = useSession()
+const ProfileEditor = ({ user }: any) => {
 
     const [userData, setUserData] = useState({
-        receiveText: session?.user?.receive,
-        giveText: session?.user?.give,
-        userCountry: session?.user?.country,
-        userCity: session?.user?.city ?? '',
-        personalInfo: session?.user?.personal_info,
-        birthYear: session?.user?.birth_year
+        receiveText: user?.receive,
+        giveText: user?.give,
+        userCountry: user?.country,
+        userCity: user?.city ?? '',
+        personalInfo: user?.personal_info,
+        birthYear: user?.birth_year
     });
     const [cities, setCities] = useState([]);
 
-    const updateUserProfile = editProfile.bind(null, session?.user?.id)
+    const updateUserProfile = editProfile.bind(null, user?.id)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -91,6 +90,8 @@ const ProfileEditor = () => {
         }
     };
 
+
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -124,24 +125,12 @@ const ProfileEditor = () => {
                                 name="birth_year"
                                 render={({ field }) => (
                                     <FormItem className="text-black">
-                                        <FormLabel className='text-black text-lg'>Birth Year:</FormLabel>
-                                        <Select {...field} value={userData.birthYear} onValueChange={(value: string) =>
-                                            setUserData({ ...userData, birthYear: value })
-                                        }>
-                                            <SelectTrigger className="w-[180px]">
-                                                <SelectValue placeholder="Select a year..." aria-label={userData.birthYear?.toString()}>
-                                                    {userData.birthYear}
-                                                </SelectValue>
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectGroup>
-                                                    {Array.from({ length: 83 }, (_, i) => {
-                                                        const year = new Date().getFullYear() - 100 + i;
-                                                        return <SelectItem key={year} value={year.toString()}>{year}</SelectItem>;
-                                                    }).reverse()}
-                                                </SelectGroup>
-                                            </SelectContent>
-                                        </Select>
+                                        <FormLabel className="text-black text-lg">Birth Year</FormLabel>
+                                        <SelectBirthYear
+                                            field={field}
+                                            userData={userData}
+                                            setUserData={setUserData}
+                                        />
                                         <FormMessage />
                                     </FormItem>
                                 )}
