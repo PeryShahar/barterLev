@@ -80,3 +80,7 @@ export async function filterByCountry(userId: string | undefined, country: strin
     throw new Error('error in filter users')
   }
 }
+
+export async function sendMessage(userId: string | undefined, formData: FormData) {
+  console.log('formData: ', formData);
+}

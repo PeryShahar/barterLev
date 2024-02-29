@@ -32,6 +32,10 @@ const Dropdown = () => {
                         My Profile
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => router.push('/chats')} className='text-xl cursor-pointer'>
+                        Chats
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem className='text-xl cursor-pointer' onClick={() => handleLogOut()}>
                         Log out
                     </DropdownMenuItem>

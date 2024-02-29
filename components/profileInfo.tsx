@@ -3,9 +3,9 @@ import { IoLocationSharp } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ProfileEditor from "@/components/edit-profile/profileEditor";
 import BackButton from "@/components/back";
-import { Button } from "./ui/button";
 import { Separator } from "@/components/ui/separator"
-import { UserSession } from "@/types";
+import LetsTalkBtn from "./letsTalkBtn";
+
 
 
 const ProfileInfo = ({ user, isMyProfile }: any) => {
@@ -14,7 +14,7 @@ const ProfileInfo = ({ user, isMyProfile }: any) => {
         <div className="font-single flex flex-col m-8 p-6 text-black rounded-lg shadow-2xl">
             <div className="flex gap-2 justify-between mt-4 max-md:mb-8">
                 <BackButton path={'/timeline'} />
-                {isMyProfile ? <ProfileEditor user={user} /> : <Button className="text-lg bg-sky-600">Let&apos;s Talk</Button>}
+                {isMyProfile ? <ProfileEditor user={user} /> : <LetsTalkBtn userId={user.id} />}
             </div>
             <div className="flex flex-col items-center">
                 <Avatar className="ml-2 self-center size-52">
