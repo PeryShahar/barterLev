@@ -2,6 +2,8 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import prisma from "./prisma";
+import { getServerSession } from "next-auth";
+import { authConfig } from "./auth";
 
 export async function editProfile(userId: string | undefined, formData: FormData) {
 
@@ -81,6 +83,58 @@ export async function filterByCountry(userId: string | undefined, country: strin
   }
 }
 
-export async function sendMessage(userId: string | undefined, formData: FormData) {
-  console.log('formData: ', formData);
+export async function sendMessage(receiverId: string | null, formData: FormData) {
+  const session: any = await getServerSession(authConfig)
+
+  const schema = z.object({
+    message: z.string(),
+  })
+
+  const parse = schema.safeParse({
+    message: formData.get('message'),
+  })
+
+  if (!parse.success) {
+    return { message: 'Failed to send message' }
+  }
+
+  const dataUser = parse.data
+
+
+  let hasConversation;
+  if (receiverId !== null) {
+    hasConversation = await prisma.conversation?.findFirst({
+      where: {
+        OR: [
+          { user1Id: session?.user?.id, user2Id: receiverId },
+          { user1Id: receiverId, user2Id: session?.user?.id },
+        ],
+      }
+    })
+  }
+
+  hasConversation ? null :
+    await prisma.conversation.create({
+      data: {
+        user1Id: session?.user?.id,
+        user2Id: receiverId ?? ''
+      }
+    })
+
+  await prisma.message.create({
+    data: {
+      message: dataUser.message as string,
+      email: session?.user?.email,
+      receiverId: receiverId ?? '',
+    },
+    include: {
+      User: {
+        select: {
+          name: true,
+          image: true
+        }
+      }
+    }
+  })
+
 }

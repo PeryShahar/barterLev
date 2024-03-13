@@ -1,80 +1,80 @@
-'use client'
+import prisma from "@/lib/prisma";
+import ChatMessages from "@/components/chats/chatMessages";
+import ChatInput from "@/components/chats/chatInput";
+import ChatConversation from "@/components/chats/chatConversions";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/lib/auth";
 
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Input } from "@/components/ui/input";
-import {
-    Form,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import { Button } from "@/components/ui/button";
-import { sendMessage } from "@/lib/actions";
-import { useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+const getConversations = async () => {
+    const conversations = await prisma.conversation.findMany({
+        select: {
+            // id: true,
+            // user1Id: true,
+            user2Id: true,
+            messages: true,
+            // user: {
+            //     select: {
+            //         name: true,
+            //         image: true
+            //     }
+            // }
+        }
+    })
+    const conversationsWithUser2Details = await Promise.all(conversations.map(async conversation => {
+        const user2 = await prisma.user.findUnique({
+            where: {
+                id: conversation.user2Id
+            },
+            select: {
+                name: true,
+                image: true
+            }
+        });
 
-const formSchema = z.object({
-    message: z.string().min(1, "Message cannot be empty"),
-})
+        return {
+            ...conversation,
+            user2: user2
+        };
+    }));
 
-const ChatsPage = () => {
-    const [chats, setChats] = useState([]);
-    const [chatInput, setChatInput] = useState('')
+    return conversationsWithUser2Details;
+}
 
-    const { data: session } = useSession()
-    const searchParams = useSearchParams()
-    const searchUID = searchParams.get('uid')
-
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            message: ''
+const getMessages = async () => {
+    const messages = await prisma.message.findMany({
+        select: {
+            id: true,
+            message: true,
+            User: {
+                select: {
+                    name: true,
+                    image: true
+                }
+            }
         },
+        orderBy: {
+            createdAt: 'asc'
+        },
+        take: 50
     })
 
-    const sendMessageV = sendMessage.bind(null, session?.user?.id)
+    return messages;
+}
+export default async function ChatsPage() {
+    const session = await getServerSession(authConfig)
+    const conversations = await getConversations()
+    console.log('conversations: ', conversations);
+    const messages = await getMessages()
 
     return (
         <div className="font-single flex text-black w-[100%] h-screen p-10">
             <div className="w-[30%] border-2 border-blue bg-rose-300 p-4">
-                <p className="text-center mb-4">Chats</p>
-
-                <span>no chats found...</span>
+                <ChatConversation conversations={conversations} />
             </div>
-            <div className="w-[70%] relative bg-black">
-                <div className="w-full border-4 border-green-200">
-                    <Form {...form}>
-                        <form action={sendMessageV} className="flex absolute bottom-0 w-full border-2 border-red-500 ">
-                            <FormField
-                                control={form.control}
-                                name='message'
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <Input
-                                            {...field}
-                                            id='chat-input'
-                                            value={chatInput}
-                                            onChange={(e) => setChatInput(e.target.value)}
-                                            className="text-black"
-                                            type="text"
-                                            placeholder="Type your message here."
-                                        />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-
-                            />
-                            <Button type="submit">Send</Button>
-                        </form>
-                    </Form>
-                </div>
+            <div className="w-[70%] bg-black">
+                <ChatMessages messages={messages} />
+                <ChatInput />
             </div>
         </div>
     )
 }
-
-export default ChatsPage;

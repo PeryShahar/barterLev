@@ -35,9 +35,9 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
   give          String?
@@ -48,6 +48,8 @@ model User {
   birth_year    String?
   accounts      Account[]
   sessions      Session[]
+  converstaions Conversation[]
+  Message       Message[]
 }
 
 model VerificationToken {
@@ -56,4 +58,23 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Conversation {
+  id       String    @id @default(cuid())
+  user1    User      @relation(fields: [user1Id], references: [id])
+  user1Id  String
+  user2Id  String
+  messages Message[]
+}
+
+model Message {
+  id             String        @id @default(uuid())
+  message        String
+  User           User?         @relation(fields: [email], references: [email])
+  email          String?
+  createdAt      DateTime      @default(now())
+  receiverId     String
+  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
 }
