@@ -35,21 +35,21 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String?        @unique
-  emailVerified DateTime?
-  image         String?
-  give          String?
-  receive       String?
-  country       String?
-  city          String?
-  personal_info String?
-  birth_year    String?
-  accounts      Account[]
-  sessions      Session[]
-  converstaions Conversation[]
-  Message       Message[]
+  id                String         @id @default(cuid())
+  name              String?
+  email             String?        @unique
+  emailVerified     DateTime?
+  image             String?
+  give              String?
+  receive           String?
+  country           String?
+  city              String?
+  personal_info     String?
+  birth_year        String?
+  accounts          Account[]
+  sessions          Session[]
+  user1Conversation Conversation[] @relation("user1")
+  user2Conversation Conversation[] @relation("user2")
 }
 
 model VerificationToken {
@@ -62,19 +62,18 @@ model VerificationToken {
 
 model Conversation {
   id       String    @id @default(cuid())
-  user1    User      @relation(fields: [user1Id], references: [id])
+  user1    User      @relation(fields: [user1Id], references: [id], name: "user1")
   user1Id  String
+  user2    User      @relation(fields: [user2Id], references: [id], name: "user2")
   user2Id  String
   messages Message[]
 }
 
 model Message {
   id             String        @id @default(uuid())
-  message        String
-  User           User?         @relation(fields: [email], references: [email])
-  email          String?
+  content        String
+  senderId       String
   createdAt      DateTime      @default(now())
-  receiverId     String
   Conversation   Conversation? @relation(fields: [conversationId], references: [id])
   conversationId String?
 }
