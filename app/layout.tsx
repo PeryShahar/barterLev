@@ -33,7 +33,7 @@ export default async function RootLayout({
             </head>
             <body className={inter.className + " flex flex-col"} suppressHydrationWarning={true}>
                 <NextAuthProvider>
-                    {session?.user?.has_first_time ? null : <Navbar />}
+                    <Navbar />
                     {children}
                 </NextAuthProvider>
             </body>

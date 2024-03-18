@@ -2,6 +2,8 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import prisma from "./prisma";
+import { redirect, permanentRedirect } from "next/navigation";
+
 
 export async function editProfile(userId: string | undefined, formData: FormData) {
 
@@ -44,7 +46,7 @@ export async function editProfile(userId: string | undefined, formData: FormData
         has_first_time: false
       },
     })
-    revalidatePath('/my-profile')
+    redirect("/")
   } catch (e) {
     return { message: 'Failed to update profile' }
   }
