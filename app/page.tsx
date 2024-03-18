@@ -10,7 +10,10 @@ import { Hero, WhatIs, HowItWorks, Footer } from "@/components/landing-page"
 export default async function SignInPage() {
   const session: any = await getServerSession(authConfig);
 
-  if (session) return redirect("/timeline");
+  if (session) {
+    if (session?.user?.has_first_time) return redirect("/edit-profile")
+    return redirect("/timeline");
+  }
 
   return (
     <>

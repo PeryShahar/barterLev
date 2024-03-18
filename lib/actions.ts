@@ -40,7 +40,8 @@ export async function editProfile(userId: string | undefined, formData: FormData
         country: dataUser.country,
         personal_info: dataUser.personal_info,
         city: dataUser.city,
-        birth_year: dataUser.birth_year
+        birth_year: dataUser.birth_year,
+        has_first_time: false
       },
     })
     revalidatePath('/my-profile')

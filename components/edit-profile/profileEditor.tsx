@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useRouter } from 'next/navigation'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+
 
 import { editProfile } from "@/lib/actions"
 
@@ -41,8 +43,10 @@ const formSchema = z.object({
     birth_year: z.string()
 })
 
-const ProfileEditor = ({ user }: any) => {
+const ProfileEditor = ({ user, open }: any) => {
+    const router = useRouter()
 
+    const [openDialog, setOpenDialog] = useState(open)
     const [userData, setUserData] = useState({
         receiveText: user?.receive,
         giveText: user?.give,
@@ -89,12 +93,17 @@ const ProfileEditor = ({ user }: any) => {
         }
     };
 
+    const handleCloseDialog = () => {
+        setOpenDialog(!open)
+        router.push('/timeline')
+    }
+
 
 
     return (
-        <Dialog>
+        <Dialog open={openDialog}>
             <DialogTrigger asChild>
-                <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
+                {!user?.has_first_time ? <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button> : null}
             </DialogTrigger>
             <DialogContent className='font-single border-blue-500 max-md:w-11/12 max-md:h-5/6 max-md:overflow-scroll'>
                 <DialogHeader >
@@ -193,18 +202,18 @@ const ProfileEditor = ({ user }: any) => {
                             />
                             <p className="text-rose-500 text-xs">* your profile will only be displayed when there is information provided in the inputs.</p>
                             <div className="flex justify-center gap-4">
-                                <DialogClose asChild>
+                                {/* <DialogClose asChild>
                                     <Button className="mt-4" type="button">Cancel</Button>
-                                </DialogClose>
+                                </DialogClose> */}
                                 <DialogClose asChild>
-                                    <Button className="mt-4" type="submit">Save changes</Button>
+                                    <Button onClick={handleCloseDialog} className="mt-4" type="submit">Save changes</Button>
                                 </DialogClose>
                             </div>
                         </div>
                     </form>
                 </Form>
             </DialogContent>
-        </Dialog>
+        </Dialog >
     )
 }
 
