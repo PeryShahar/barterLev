@@ -20,7 +20,7 @@ interface SelectCountryProps {
 const SelectCountry: React.ForwardRefRenderFunction<HTMLDivElement, SelectCountryProps> = ({ field, userCountry, setUserCountry }, ref) => {
     return (
         <>
-            <Select {...field} value={userCountry} onValueChange={setUserCountry} ref={ref}>
+            <Select required {...field} value={userCountry} onValueChange={setUserCountry} ref={ref}>
                 <SelectTrigger className="w-[11.25rem]">
                     <SelectValue placeholder='choose a country...' aria-label={userCountry}>
                         {userCountry}

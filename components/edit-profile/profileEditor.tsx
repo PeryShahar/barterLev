@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useRouter } from 'next/navigation'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 
@@ -43,10 +42,8 @@ const formSchema = z.object({
     birth_year: z.string()
 })
 
-const ProfileEditor = ({ user, open }: any) => {
-    const router = useRouter()
+const ProfileEditor = ({ user }: any) => {
 
-    const [openDialog, setOpenDialog] = useState(user?.has_first_time)
     const [userData, setUserData] = useState({
         receiveText: user?.receive ?? '',
         giveText: user?.give ?? '',
@@ -93,17 +90,11 @@ const ProfileEditor = ({ user, open }: any) => {
         }
     };
 
-    const handleCloseDialog = () => {
-        setOpenDialog(!open)
-        router.replace('/');
-    }
-
-
     return (
         <div>
-            <Dialog open={openDialog}>
+            <Dialog>
                 <DialogTrigger asChild>
-                    {!user?.has_first_time ? <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button> : null}
+                    <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
                 </DialogTrigger>
                 <DialogContent className='font-single border-blue-500 max-md:w-11/12 max-md:h-5/6 max-md:overflow-scroll'>
                     <DialogHeader >
@@ -205,7 +196,7 @@ const ProfileEditor = ({ user, open }: any) => {
                                     {/* <DialogClose asChild>
                                     <Button className="mt-4" type="button">Cancel</Button>
                                 </DialogClose> */}
-                                    <DialogClose onClick={handleCloseDialog} asChild>
+                                    <DialogClose asChild>
                                         <Button className="mt-4" type="submit">Save changes</Button>
                                     </DialogClose>
                                 </div>

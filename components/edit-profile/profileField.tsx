@@ -30,6 +30,7 @@ const ProfileField = ({ form, fieldName, labelText, fieldValue, setFieldValue, m
                         onChange={(e) => setFieldValue(e.target.value)}
                         className="text-black"
                         type="text"
+                        required
                         placeholder="Type your message here."
                         maxLength={maxLength}
                     />
