@@ -61,7 +61,6 @@ const ProfileEditorFirstTime = ({ user }: any) => {
         },
     })
     const { formState } = form;
-    console.log('formState: ', formState.errors);
 
 
     useEffect(() => {
