@@ -2,8 +2,6 @@ import { Inter, Single_Day } from "next/font/google";
 import { NextAuthProvider } from "./providers";
 import Navbar from "@/components/navbar/navbar";
 import "./globals.css";
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/lib/auth";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +23,6 @@ export default async function RootLayout({
     children: React.ReactNode;
 }) {
 
-    const session: any = await getServerSession(authConfig)
     return (
         <html suppressHydrationWarning={true} lang="en" className={`${singleDay.variable}`}>
             <head>
