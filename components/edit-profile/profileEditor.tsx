@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 
+
 import { editProfile } from "@/lib/actions"
 
 import SelectCountry from "../countrySelect"
@@ -44,12 +45,12 @@ const formSchema = z.object({
 const ProfileEditor = ({ user }: any) => {
 
     const [userData, setUserData] = useState({
-        receiveText: user?.receive,
-        giveText: user?.give,
-        userCountry: user?.country,
+        receiveText: user?.receive ?? '',
+        giveText: user?.give ?? '',
+        userCountry: user?.country ?? '',
         userCity: user?.city ?? '',
-        personalInfo: user?.personal_info,
-        birthYear: user?.birth_year
+        personalInfo: user?.personal_info ?? '',
+        birthYear: user?.birth_year ?? ''
     });
     const [cities, setCities] = useState([]);
 
@@ -89,122 +90,122 @@ const ProfileEditor = ({ user }: any) => {
         }
     };
 
-
-
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
-            </DialogTrigger>
-            <DialogContent className='font-single border-blue-500 max-md:w-11/12 max-md:h-5/6 max-md:overflow-scroll'>
-                <DialogHeader >
-                    <DialogDescription className='text-xl'>
-                        Make changes to your profile here. Click save when you are done.
-                    </DialogDescription>
-                </DialogHeader>
-                <Form {...form}>
-                    <form action={updateUserProfile} className="space-y-8">
-                        <div className="flex flex-col gap-4 ">
-                            <FormField
-                                control={form.control}
-                                name="personal_info"
-                                render={({ field }) => (
-                                    <FormItem className="text-black">
-                                        <FormLabel className='text-black text-lg'>About Me:</FormLabel>
-                                        <Textarea
-                                            {...field}
-                                            value={userData.personalInfo}
-                                            onChange={(event) => setUserData({ ...userData, personalInfo: event.target.value })} />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="birth_year"
-                                render={({ field }) => (
-                                    <FormItem className="text-black">
-                                        <FormLabel className="text-black text-lg">Birth Year</FormLabel>
-                                        <SelectBirthYear
-                                            field={field}
-                                            userData={userData}
-                                            setUserData={setUserData}
-                                        />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <div className="flex gap-2 max-md:flex-col">
+        <div>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button className="self-center bg-sky-600 text-lg">Edit Profile</Button>
+                </DialogTrigger>
+                <DialogContent className='font-single border-blue-500 max-md:w-11/12 max-md:h-5/6 max-md:overflow-scroll'>
+                    <DialogHeader >
+                        <DialogDescription className='text-xl'>
+                            Make changes to your profile here. Click save when you are done.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <Form {...form}>
+                        <form action={updateUserProfile} className="space-y-8">
+                            <div className="flex flex-col gap-4 ">
                                 <FormField
                                     control={form.control}
-                                    name="country"
+                                    name="personal_info"
                                     render={({ field }) => (
                                         <FormItem className="text-black">
-                                            <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
-                                            <SelectCountry
-                                                field={field}
-                                                userCountry={userData.userCountry}
-                                                setUserCountry={(value: string) => {
-                                                    setUserData({ ...userData, userCountry: value, userCity: '' })
-                                                    setCities([])
-
-                                                }
-                                                } />
+                                            <FormLabel className='text-black text-lg'>About Me:</FormLabel>
+                                            <Textarea
+                                                {...field}
+                                                value={userData.personalInfo}
+                                                onChange={(event) => setUserData({ ...userData, personalInfo: event.target.value })} />
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                 />
                                 <FormField
                                     control={form.control}
-                                    name="city"
+                                    name="birth_year"
                                     render={({ field }) => (
                                         <FormItem className="text-black">
-                                            <FormLabel className="text-black text-lg">Select your city:</FormLabel>
-                                            <SelectCity
+                                            <FormLabel className="text-black text-lg">Birth Year</FormLabel>
+                                            <SelectBirthYear
                                                 field={field}
-                                                userCity={userData.userCity}
-                                                setUserCity={(value: string) => setUserData({ ...userData, userCity: value })}
-                                                cities={cities}
+                                                userData={userData}
+                                                setUserData={setUserData}
                                             />
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                 />
-                            </div>
-                            <ProfileField
-                                form={form}
-                                fieldName="give"
-                                labelText="What do you want to give?"
-                                fieldValue={userData.giveText}
-                                setFieldValue={(value: string) =>
-                                    setUserData({ ...userData, giveText: value })
-                                }
-                                maxLength={200}
-                            />
-                            <ProfileField
-                                form={form}
-                                fieldName="receive"
-                                labelText="What do you want to receive?"
-                                fieldValue={userData.receiveText}
-                                setFieldValue={(value: string) =>
-                                    setUserData({ ...userData, receiveText: value })
-                                }
-                                maxLength={200}
-                            />
-                            <p className="text-rose-500 text-xs">* your profile will only be displayed when there is information provided in the inputs.</p>
-                            <div className="flex justify-center gap-4">
-                                <DialogClose asChild>
+                                <div className="flex gap-2 max-md:flex-col">
+                                    <FormField
+                                        control={form.control}
+                                        name="country"
+                                        render={({ field }) => (
+                                            <FormItem className="text-black">
+                                                <FormLabel className='text-black text-lg'>Select your country:</FormLabel>
+                                                <SelectCountry
+                                                    field={field}
+                                                    userCountry={userData.userCountry}
+                                                    setUserCountry={(value: string) => {
+                                                        setUserData({ ...userData, userCountry: value, userCity: '' })
+                                                        setCities([])
+
+                                                    }
+                                                    } />
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="city"
+                                        render={({ field }) => (
+                                            <FormItem className="text-black">
+                                                <FormLabel className="text-black text-lg">Select your city:</FormLabel>
+                                                <SelectCity
+                                                    field={field}
+                                                    userCity={userData.userCity}
+                                                    setUserCity={(value: string) => setUserData({ ...userData, userCity: value })}
+                                                    cities={cities}
+                                                />
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <ProfileField
+                                    form={form}
+                                    fieldName="give"
+                                    labelText="What do you want to give?"
+                                    fieldValue={userData.giveText}
+                                    setFieldValue={(value: string) =>
+                                        setUserData({ ...userData, giveText: value })
+                                    }
+                                    maxLength={200}
+                                />
+                                <ProfileField
+                                    form={form}
+                                    fieldName="receive"
+                                    labelText="What do you want to receive?"
+                                    fieldValue={userData.receiveText}
+                                    setFieldValue={(value: string) =>
+                                        setUserData({ ...userData, receiveText: value })
+                                    }
+                                    maxLength={200}
+                                />
+                                <p className="text-rose-500 text-xs">* your profile will only be displayed when there is information provided in the inputs.</p>
+                                <div className="flex justify-center gap-4">
+                                    {/* <DialogClose asChild>
                                     <Button className="mt-4" type="button">Cancel</Button>
-                                </DialogClose>
-                                <DialogClose asChild>
-                                    <Button className="mt-4" type="submit">Save changes</Button>
-                                </DialogClose>
+                                </DialogClose> */}
+                                    <DialogClose asChild>
+                                        <Button className="mt-4" type="submit">Save changes</Button>
+                                    </DialogClose>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </Form>
-            </DialogContent>
-        </Dialog>
+                        </form>
+                    </Form>
+                </DialogContent>
+            </Dialog >
+        </div>
     )
 }
 

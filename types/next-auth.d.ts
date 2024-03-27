@@ -6,7 +6,6 @@ declare module "next-auth" {
      */
     interface Session {
         user: {
-            /** The user's postal address. */
             receive: string
             give: string
             country: string
@@ -15,6 +14,7 @@ declare module "next-auth" {
             personal_info: string
             city: string
             birth_year: string
+            has_first_time: boolean
         }
     }
 }

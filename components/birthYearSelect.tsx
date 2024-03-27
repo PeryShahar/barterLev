@@ -10,7 +10,7 @@ interface BirthYearSelectProps {
 
 const SelectBirthYear: React.ForwardRefRenderFunction<HTMLDivElement, BirthYearSelectProps> = ({ field, userData, setUserData }, ref) => {
     return (
-        <Select {...field} value={userData.birthYear} onValueChange={(value: string) => setUserData({ ...userData, birthYear: value })} ref={ref}>
+        <Select required {...field} value={userData.birthYear} onValueChange={(value: string) => setUserData({ ...userData, birthYear: value })} ref={ref}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a year..." aria-label={userData.birthYear?.toString()}>
                     {userData.birthYear}
