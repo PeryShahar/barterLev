@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import TimelineUsers from "@/components/timelineUsers";
+import TimelineUsers from "@/components/timeline/timelineUsers";
 
 const fetchAllUsers = async () => {
     const session: any = await getServerSession(authConfig);

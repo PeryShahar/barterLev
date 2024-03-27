@@ -1,6 +1,6 @@
 import { Inter, Single_Day } from "next/font/google";
 import { NextAuthProvider } from "./providers";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar/navbar";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth";

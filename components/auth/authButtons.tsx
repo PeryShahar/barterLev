@@ -4,7 +4,7 @@ import Image from "next/image";
 import googleLogo from "@/public/assets/images/google-logo.png";
 import facebookLogo from '@/public/assets/images/facebook-logo.png'
 import { signIn } from "next-auth/react";
-import { Button } from "./ui/moving-border";
+import { Button } from "../ui/moving-border";
 
 export function GoogleSignInButton() {
     const handleClick = () => {

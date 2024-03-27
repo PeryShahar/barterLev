@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import ProfileInfo from "@/components/profileInfo";
+import ProfileInfo from "@/components/profile/profileInfo";
 import { authConfig } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 

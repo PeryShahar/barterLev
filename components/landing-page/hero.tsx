@@ -1,4 +1,4 @@
-import { GoogleSignInButton } from "../authButtons"
+import { GoogleSignInButton } from "../auth/authButtons"
 import { TextGenerateEffect } from "../ui/text-generate-effect";
 
 const Hero = () => {

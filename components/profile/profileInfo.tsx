@@ -2,8 +2,8 @@ import { IoLocationSharp } from "react-icons/io5";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ProfileEditor from "@/components/edit-profile/profileEditor";
-import BackButton from "@/components/back";
-import { Button } from "./ui/button";
+import BackButton from "@/components/generic/back";
+import { Button } from "../ui/button";
 import { Separator } from "@/components/ui/separator"
 import { UserSession } from "@/types";
 

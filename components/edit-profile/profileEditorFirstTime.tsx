@@ -9,9 +9,9 @@ import { z } from "zod"
 
 import { editProfileFirstTime } from "@/lib/actions"
 
-import SelectCountry from "../countrySelect"
-import SelectCity from "../citySelect"
-import SelectBirthYear from '../birthYearSelect'
+import SelectCountry from "../generic/select/countrySelect"
+import SelectCity from "../generic/select/citySelect"
+import SelectBirthYear from '../generic/select/birthYearSelect'
 import ProfileField from "./profileField"
 
 import {

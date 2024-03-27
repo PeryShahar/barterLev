@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import UserCard from "./userCard";
-import SelectCountry from "./countrySelect";
+import SelectCountry from "../generic/select/countrySelect";
 
 import {
     Form,
@@ -15,7 +15,7 @@ import {
     FormItem,
     FormMessage,
 } from "@/components/ui/form"
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 import { filterByCountry } from "@/lib/actions";
 import { UserSession } from "@/types";

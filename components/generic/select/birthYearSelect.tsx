@@ -1,6 +1,6 @@
 
 import React, { forwardRef } from "react";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
 
 interface BirthYearSelectProps {
     field: any;

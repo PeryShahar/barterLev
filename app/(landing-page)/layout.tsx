@@ -1,4 +1,4 @@
-import BackButton from "@/components/back"
+import BackButton from "@/components/generic/back"
 
 export default function LandingPageLayout({
     children

@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import ProfileInfo from "@/components/profileInfo";
+import ProfileInfo from "@/components/profile/profileInfo";
 
 export default async function Page({ params }: { params: { userId: string } }) {
 
