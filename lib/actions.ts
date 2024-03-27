@@ -1,101 +1,64 @@
 'use server'
+
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import prisma from "./prisma";
-import { redirect, permanentRedirect } from "next/navigation";
 
+const userProfileSchema = z.object({
+  give: z.string(),
+  receive: z.string(),
+  country: z.string(),
+  city: z.string(),
+  personal_info: z.string(),
+  birth_year: z.string(),
+});
 
-export async function editProfile(userId: string | undefined, formData: FormData) {
+async function parseFormData(formData: any, schema: any) {
+  const formDataObject = Object.fromEntries([...formData.entries()]);
+  return schema.safeParse(formDataObject);
+}
 
-  const schema = z.object({
-    give: z.string(),
-    receive: z.string(),
-    country: z.string(),
-    city: z.string(),
-    personal_info: z.string(),
-    birth_year: z.string()
-  })
-
-  const parse = schema.safeParse({
-    give: formData.get('give'),
-    receive: formData.get('receive'),
-    country: formData.get('country'),
-    city: formData.get('city'),
-    personal_info: formData.get('personal_info'),
-    birth_year: formData.get('birth_year')
-  })
-
-  if (!parse.success) {
-    return { message: 'Failed to update profile' }
-  }
-
-  const dataUser = parse.data
-
+async function updateUserProfile(userId: string, data: any, extraData = {}) {
   try {
     await prisma.user.update({
-      where: {
-        id: userId
-      },
-      data: {
-        give: dataUser.give,
-        receive: dataUser.receive,
-        country: dataUser.country,
-        personal_info: dataUser.personal_info,
-        city: dataUser.city,
-        birth_year: dataUser.birth_year,
-      },
-    })
-    revalidatePath('my-profile')
+      where: { id: userId },
+      data: { ...data, ...extraData },
+    });
+    return { success: true };
   } catch (e) {
-    return { message: 'Failed to update profile' }
+    return { message: 'Failed to update profile', success: false };
   }
 }
-export async function editProfileFirstTime(userId: string | undefined, formData: FormData) {
 
-  const schema = z.object({
-    give: z.string(),
-    receive: z.string(),
-    country: z.string(),
-    city: z.string(),
-    personal_info: z.string(),
-    birth_year: z.string()
-  })
-
-  const parse = schema.safeParse({
-    give: formData.get('give'),
-    receive: formData.get('receive'),
-    country: formData.get('country'),
-    city: formData.get('city'),
-    personal_info: formData.get('personal_info'),
-    birth_year: formData.get('birth_year')
-  })
+export async function editProfile(userId: string, formData: FormData) {
+  const parse = await parseFormData(formData, userProfileSchema);
 
   if (!parse.success) {
-    return { message: 'Failed to update profile' }
+    return { message: 'Failed to update profile' };
   }
 
-  const dataUser = parse.data
-
-  try {
-    await prisma.user.update({
-      where: {
-        id: userId
-      },
-      data: {
-        give: dataUser.give,
-        receive: dataUser.receive,
-        country: dataUser.country,
-        personal_info: dataUser.personal_info,
-        city: dataUser.city,
-        birth_year: dataUser.birth_year,
-        has_first_time: false
-      },
-    })
-    redirect('/')
-  } catch (e) {
-    return { message: 'Failed to update profile' }
+  const result = await updateUserProfile(userId, parse.data);
+  if (result.success) {
+    revalidatePath('my-profile');
   }
+  return result;
 }
+
+export async function editProfileFirstTime(userId: string, formData: FormData) {
+  const parse = await parseFormData(formData, userProfileSchema);
+
+  if (!parse.success) {
+    return { message: 'Failed to update profile' };
+  }
+
+  const result = await updateUserProfile(userId, parse.data, { has_first_time: false });
+  if (result.success) {
+    redirect('/');
+  }
+  return result;
+}
+
 export async function filterByCountry(userId: string | undefined, country: string) {
 
   const schema = z.object({
@@ -107,24 +70,20 @@ export async function filterByCountry(userId: string | undefined, country: strin
   })
 
   if (!parse.success) {
-    return { message: 'Failed to update profile' }
+    return { message: 'Failed to update profile' };
   }
-
-  const dataUser = parse.data
 
   try {
     const usersByCountry = await prisma.user.findMany({
       where: {
-        id: {
-          not: userId
-        },
-        country: dataUser.country
+        id: { not: userId },
+        country: parse.data.country,
       },
-      select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true }
+      select: { id: true, name: true, email: true, image: true, give: true, receive: true, country: true, city: true },
     });
-    revalidatePath('/timeline')
+    revalidatePath('/timeline');
     return usersByCountry;
   } catch (e) {
-    throw new Error('error in filter users')
+    throw new Error('error in filter users');
   }
 }
